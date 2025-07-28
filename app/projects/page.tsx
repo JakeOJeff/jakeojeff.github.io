@@ -1,69 +1,15 @@
-"use client"
-import { useEffect, useState } from "react";
-
-type Repo = {
-  name: string;
-  html_url: string;
-  commits: number;
-};
+import Link from 'next/link';
 
 export default function Projects() {
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const username = "jakeojeff";
+    let pageLinkValues = "flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500"
+    return (<div>
+        <main>
+            <header>
+                <Link href={"/projects"} className={pageLinkValues}>projects<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
+                    <path strokeLinecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
+                </svg></Link>
+            </header>
+        </main>
+    </div>)
 
-  useEffect(() => {
-    const fetchRepos = async () => {
-      const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-      const data = await res.json();
-
-      const reposWithCommits = await Promise.all(
-        data.map(async (repo: any) => {
-          try {
-            const commitsRes = await fetch(
-              `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`
-            );
-            const linkHeader = commitsRes.headers.get("Link");
-            let commits = 0;
-
-            if (linkHeader && linkHeader.includes("rel=\"last\"")) {
-              const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
-              commits = match ? parseInt(match[1]) : 0;
-            } else {
-              const json = await commitsRes.json();
-              commits = json.length;
-            }
-
-            return { name: repo.name, html_url: repo.html_url, commits };
-          } catch (e) {
-            return { name: repo.name, html_url: repo.html_url, commits: 0 };
-          }
-        })
-      );
-
-      const sorted = reposWithCommits.sort((a, b) => b.commits - a.commits);
-      setRepos(sorted.slice(0, 10)); // top 10
-    };
-
-    fetchRepos();
-  }, []);
-
-  return (
-    <main className="p-4">
-      <h1 className="text-xl font-bold mb-4">Top GitHub Repos by Commit Count</h1>
-      <ul className="space-y-2">
-        {repos.map((repo, i) => (
-          <li key={repo.name}>
-            <a
-              className="text-blue-500 hover:underline"
-              href={repo.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {i + 1}. {repo.name} — {repo.commits} commits
-            </a>
-          </li>
-        ))}
-      </ul>
-    </main>
-  );
 }
