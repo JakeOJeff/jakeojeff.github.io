@@ -17,6 +17,9 @@ export default function Home() {
   let name = "Paulyn {JakeOJeff}"
 
   let linkValues = "font-bold text-gray-500 hover:text-gray-200 duration-500 "
+
+  let pageLinkValues = "flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500"
+
   const desc = (
     <>
 
@@ -80,21 +83,21 @@ export default function Home() {
             />
           </div>
           <div className="flex-[2] ">
-            <h1 className="text-2xl font-bold">{name}</h1>
+            <h1 className="text-4xl font-bold mb-4">{name}</h1>
             <h3 className="text-lg">{desc}</h3>
 
-            <Link href={"/about"} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500">about<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
+            <Link href={"/about"} className={pageLinkValues}>about<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
             </svg></Link>
 
 
-            <Link href={"/projects"} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500">projects<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
+            <Link href={"/projects"} className={pageLinkValues}>projects<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
             </svg></Link>
 
 
 
-            <Link href={"/skills"} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500 ">skills<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
+            <Link href={"/skills"} className={pageLinkValues}>skills<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
             </svg></Link>
 
