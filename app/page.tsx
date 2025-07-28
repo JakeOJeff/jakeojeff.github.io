@@ -14,6 +14,8 @@ const images = [
 
 export default function Home() {
   let name = "Paulyn {JakeOJeff}"
+
+  let linkValues = "font-bold text-gray-500 hover:text-gray-200 duration-500 hover:underline "
   const desc = (
     <>
       <strong>12th grade programmer</strong> and <strong>cyber-pentester</strong>, created a no-database fully private online chatting app called {' '}
@@ -21,7 +23,7 @@ export default function Home() {
         href="https://github.com/yourusername/stacks-against-you"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 underline"
+        className={linkValues}
       >
         Stacks Against You
       </a>{' '}
@@ -30,7 +32,7 @@ export default function Home() {
         href="https://github.com/yourusername/ossint"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 underline"
+        className={linkValues}
       >
         OSSint
       </a>, person behind{' '}
@@ -38,7 +40,7 @@ export default function Home() {
         href="https://vellapaper.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 underline"
+        className={linkValues}
       >
         Vellapaper
       </a>
@@ -54,7 +56,7 @@ export default function Home() {
               randomRotation={true}
               sensitivity={180}
               sendToBackOnClick={false}
-              cardDimensions={{ width: 450, height:450 }}
+              cardDimensions={{ width: 400, height:400 }}
               cardsData={images}
             />
           </div>
@@ -62,18 +64,18 @@ export default function Home() {
             <h1 className="text-2xl font-bold">{name}</h1>
             <h3 className="text-lg">{desc}</h3>
 
-            <Link href={""} className="flex items-center gap-1 m-1 text-[20px]">about<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-4">
+            <Link href={"jakeojeff.hackclub.app"} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500">about<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
             </svg></Link>
 
 
-            <Link href={""} className="flex items-center gap-1 m-1 text-[20px]">projects<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-4">
+            <Link href={""} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500">projects<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
             </svg></Link>
 
 
 
-            <Link href={""} className="flex items-center gap-1 m-1 text-[20px]">skills<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-4">
+            <Link href={"vellapaper.com"} className="flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500 ">skills<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
             </svg></Link>
 
