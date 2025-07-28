@@ -48,17 +48,17 @@ export default function Home() {
   return (
     <div className="bg-gray-900 flex justify-center items-center text-white min-h-screen p-4">
       <main className="w-full max-w-4xl">
-        <div className="flex gap-20">
-          <div className="flex-1 bg-amber-50 mr-5">
+        <div className="flex gap-20 items-center">
+          <div className="flex-1">
             <Stack
               randomRotation={true}
               sensitivity={180}
               sendToBackOnClick={false}
-              cardDimensions={{ width: 400, height: 400 }}
+              cardDimensions={{ width: 450, height:450 }}
               cardsData={images}
             />
           </div>
-          <div className="flex-[2] bg-amber-100">
+          <div className="flex-[2] ">
             <h1 className="text-2xl font-bold">{name}</h1>
             <h3 className="text-lg">{desc}</h3>
 

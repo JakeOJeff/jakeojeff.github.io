@@ -7,9 +7,7 @@ interface CardRotateProps {
   children: React.ReactNode;
   onSendToBack: () => void;
   sensitivity: number;
-  resetTrigger: number;
 }
-
 
 function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   const x = useMotionValue(0);
@@ -116,9 +114,8 @@ export default function Stack({
               className="rounded-2xl overflow-hidden border-4 border-white"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
-                rotateZ: index === cards.length - 1 ? 0 : (cards.length - index - 1) * 4 + randomRotate,
-
-                scale: 1 + index * 0.06 - cards.length * 0.06,
+                rotateZ: (cards.length - index - 1) * 2 + randomRotate,
+                scale: 1 + index * 0.1 - cards.length * 0.06,
                 transformOrigin: "90% 90%",
               }}
               initial={false}
