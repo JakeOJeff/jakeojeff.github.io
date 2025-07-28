@@ -46,7 +46,7 @@ export default function Home() {
       >
         Vellapaper
       </a>
-      <div className="flex pr-3 text-gray-300 font-bold"><div>In Development : </div>
+      <div className="flex pr-3 text-gray-300 font-bold"><div>in dev -: </div>
       <a
       href="https://github.com/jakeojeff">
               <RotatingText
