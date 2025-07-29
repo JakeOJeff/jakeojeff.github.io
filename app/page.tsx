@@ -16,9 +16,9 @@ const images = [
 export default function Home() {
   let name = "Paulyn {JakeOJeff}"
 
-  let linkValues = "font-bold text-gray-500 hover:text-gray-200 duration-500 "
+  let linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
 
-  let pageLinkValues = "flex items-center gap-1 m-1 text-[20px] text-gray-400 hover:text-gray-100 duration-500"
+  let pageLinkValues = "flex items-center gap-1 m-1 text-[20px]  text-gray-500 hover:text-gray-800 duration-500 hover:animate-pulse"
 
   const desc = (
     <>
@@ -49,12 +49,12 @@ export default function Home() {
       >
         Vellapaper
       </a>
-      <div className="flex pr-3 text-gray-300 font-bold"><div>in dev -: </div>
+      <div className="flex pr-3 text-[14px] text-gray-500 font-bold justify-center"> {/*<div>in dev -: </div>*/}
       <a
       href="https://github.com/jakeojeff">
               <RotatingText
         texts={['Stacks Against You.', 'Flowlog.', 'Luminzier.', 'OSSint.', 'JKPhys.']}
-        mainClassName="ml-2"
+        mainClassName="ml-2 text-gray-500 hover:text-gray-800 duration-500"
         staggerFrom={"last"}
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
@@ -70,7 +70,7 @@ export default function Home() {
   );
 
   return (
-    <div className="bg-gray-900 flex justify-center items-center text-white min-h-screen p-4">
+    <div className="bg-gray-200 flex justify-center items-center text-black min-h-screen p-4">
       <main className="w-full max-w-4xl">
         <div className="flex gap-20 items-center">
           <div className="flex-1">
@@ -84,7 +84,7 @@ export default function Home() {
           </div>
           <div className="flex-[2] ">
             <h1 className="text-4xl font-bold mb-4">{name}</h1>
-            <h3 className="text-lg">{desc}</h3>
+            <h3 className="text-lg mb-4">{desc}</h3>
 
             <Link href={"/about"} className={pageLinkValues}>about<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="size-4">
               <path strokeLinecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
