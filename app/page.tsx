@@ -56,19 +56,21 @@ export default function Home() {
   );
 
   return (
-  <div className="flex flex-col bg-gray-200 min-h-screen text-black">
-    {/*Top Header Content*/}
-    <div className="justify-start  items-center flex-1">
+ <div className="flex flex-col bg-gray-200 min-h-screen text-black">
+    
+    {/* Top Header Content */}
+    <div className="px-4 py-2 text-lg font-mono">
       ~/
     </div>
+
     {/* Centered main content */}
-    <div className="flex justify-center items-center p-4">
+    <div className="flex-grow flex justify-center items-center p-4">
       <main className="w-full max-w-5xl">
         <div className="flex flex-col lg:flex-row gap-12 items-center justify-between">
           {/* Left: Card Stack */}
           <div className="flex-1 flex justify-center">
             <Stack
-              randomRotation={true}
+              randomRotation={false}
               sensitivity={180}
               sendToBackOnClick={false}
               cardDimensions={{ width: 400, height: 400 }}
@@ -81,7 +83,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold mb-4">{name}</h1>
             <h3 className="text-lg mb-6">{desc}</h3>
 
-            <div className="flex flex-col gap-2 items-center lg:items-start">
+            <div className="flex flex-col items-center lg:items-start">
               <Link href={"/about"} className={pageLinkValues}>
                 about
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-4 ml-1">
@@ -96,8 +98,8 @@ export default function Home() {
                 </svg>
               </Link>
 
-              <Link href={"/skills"} className={pageLinkValues}>
-                skills
+              <Link href={"/blogs"} className={pageLinkValues}>
+                blogs
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-4 ml-1">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                 </svg>
