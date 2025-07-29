@@ -63,23 +63,23 @@ export default function Stack({
     cardsData.length
       ? cardsData
       : [
-          {
-            id: 1,
-            img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format",
-          },
-          {
-            id: 2,
-            img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format",
-          },
-          {
-            id: 3,
-            img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format",
-          },
-          {
-            id: 4,
-            img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format",
-          },
-        ]
+        {
+          id: 1,
+          img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format",
+        },
+        {
+          id: 2,
+          img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format",
+        },
+        {
+          id: 3,
+          img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format",
+        },
+        {
+          id: 4,
+          img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format",
+        },
+      ]
   );
 
   const sendToBack = (id: number) => {
@@ -113,11 +113,15 @@ export default function Stack({
             <motion.div
               className="rounded-2xl overflow-hidden border-4 border-white"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
+              // animate={{
+              //   rotateZ: (cards.length - index - 1) * 2 ,
+              //   scale: 1 + index * 0.1 - cards.length * 0.06,
+              //   transformOrigin: "90% 90%",
+              // }}
               animate={{
-                rotateZ: (cards.length - index - 1) * 2 + randomRotate,
                 scale: 1 + index * 0.1 - cards.length * 0.06,
-                transformOrigin: "90% 90%",
               }}
+
               initial={false}
               transition={{
                 type: "spring",
