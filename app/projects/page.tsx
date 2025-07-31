@@ -64,7 +64,7 @@ export default function Projects() {
 
   return (
     <main className="bg-gray-200 text-black min-h-screen px-6 py-10">
-      <div className="m-6 text-lg font-mono text-gray-500">~/projects</div>
+      <div className="m-4 text-lg font-mono text-gray-500">~/projects</div>
 
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((repo, i) => (
