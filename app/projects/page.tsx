@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+import githubIcon from '/public/github.svg';
+import globeIcon from '/public/globe.svg';
+
 const projects = [
   {
     name: "Stacks Against You",
@@ -97,9 +100,9 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Live Demo"
-                    className="hover:scale-110 transition"
+                    className="hover:scale-105 duration-500 transition"
                   >
-                    🌐
+                    <Image src={globeIcon} alt="Website" width={24} height={24} />
                   </a>
                 )}
                 {repo.repo && (
@@ -108,9 +111,9 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="GitHub"
-                    className="hover:scale-110 transition"
+                    className="hover:scale-105 duration-500 transition"
                   >
-                    🐙
+                    <Image src={githubIcon} alt="GitHub" width={24} height={24} />
                   </a>
                 )}
               </div>
