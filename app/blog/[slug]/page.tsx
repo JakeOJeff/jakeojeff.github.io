@@ -1,30 +1,46 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+"use client";
 
-type Props = {
-  params: { slug: string };
-};
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { marked } from "marked";
+import matter from "front-matter"; // 👈 front-matter parser
 
-export async function generateStaticParams() {
-  const files = fs.readdirSync("content/blog");
-  return files.map((file) => ({ slug: file.replace(".md", "") }));
-}
+export default function BlogPost() {
+  const { slug } = useParams();
+  const [content, setContent] = useState("");
+  const [error, setError] = useState(false);
+  const [meta, setMeta] = useState({ title: "", theme: "", layout: "" });
 
-export default async function BlogPost({ params }: Props) {
-  const filePath = `content/blog/${params.slug}.md`;
-  const file = fs.readFileSync(filePath, "utf8");
-  const { content, data } = matter(file);
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  useEffect(() => {
+    const loadPost = async () => {
+      try {
+        const res = await fetch(`/data/${slug}.md`);
+        if (!res.ok) throw new Error("Post not found");
+        const text = await res.text();
+        
+        const parsed = matter(text); // parse frontmatter
+        const html = await marked.parse(parsed.body);
+
+        setContent(html);
+        setMeta(parsed.attributes as any);
+      } catch (err) {
+        setError(true);
+      }
+    };
+
+    loadPost();
+  }, [slug]);
+
+  if (error) return <div className="p-10 text-red-500">Post not found.</div>;
+
+  // Use frontmatter metadata to apply classes
+  const themeClass = meta.theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-200 text-black";
+  const layoutClass = meta.layout === "wide" ? "max-w-7xl" : "max-w-3xl";
 
   return (
-    <main className="prose max-w-3xl px-6 py-12 mx-auto">
-      <h1>{data.title}</h1>
-      <p className="text-gray-500">{data.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    <main className={`prose min-h-screen px-6 py-12 mx-auto ${themeClass} ${layoutClass}`}>
+      <h1>{meta.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );
 }
