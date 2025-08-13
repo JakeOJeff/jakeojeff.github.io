@@ -2,12 +2,6 @@ import fs from "fs";
 import path from "path";
 import { marked } from "marked";
 
-interface BlogPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "public/data");
   const files = fs.readdirSync(postsDir);
@@ -19,13 +13,17 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function BlogPost({ params }: BlogPageProps) {
+export default async function BlogPost({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const filePath = path.join(process.cwd(), "public/data", `${params.slug}.md`);
 
-  let html = "";
+  let html: string;
   try {
     const fileContent = fs.readFileSync(filePath, "utf-8");
-    html = await marked.parse(fileContent);
+    html = await marked.parse(fileContent); // ✅ await because it's async
   } catch {
     html = "<h1>Post not found</h1>";
   }
