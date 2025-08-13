@@ -5,10 +5,9 @@ import RotatingText from './RotatingText';
 
 
 const images = [
-  { id: 1, img: "/images/1.jpeg" },
+  { id: 1, img: "/images/3.jpeg" },
   { id: 2, img: "/images/2.jpeg" },
-  { id: 3, img: "/images/3.jpeg" },
-  { id: 4, img: "/images/4.jpeg" }
+  { id: 3, img: "/images/1.jpeg" }
 ];
 
 
