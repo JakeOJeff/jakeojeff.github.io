@@ -1,36 +1,32 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import fs from "fs";
+import path from "path";
 import { marked } from "marked";
 
-export default function BlogPost() {
-  const { slug } = useParams();
-  const [content, setContent] = useState("");
-  const [error, setError] = useState(false);
+export async function generateStaticParams() {
+  const postsDir = path.join(process.cwd(), "public/data");
+  const files = fs.readdirSync(postsDir);
 
-useEffect(() => {
-  const loadPost = async () => {
-    try {
-      const res = await fetch(`/data/${slug}.md`);
-      if (!res.ok) throw new Error("Post not found");
-      const text = await res.text();
-      const html = await marked.parse(text);
-      setContent(html);
-    } catch (err) {
-      setError(true);
-    }
-  };
+  return files
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => ({
+      slug: file.replace(/\.md$/, ""),
+    }));
+}
 
-  loadPost();
-}, [slug]);
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const filePath = path.join(process.cwd(), "public/data", `${params.slug}.md`);
 
-  if (error) return <div className="p-10 text-red-500">Post not found.</div>;
+  let html = "";
+  try {
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    html = await marked.parse(fileContent);
+  } catch {
+    html = "<h1>Post not found</h1>";
+  }
 
   return (
-<main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
-  <div dangerouslySetInnerHTML={{ __html: content }} />
-</main>
-
+    <main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </main>
   );
 }
