@@ -10,10 +10,9 @@ import React, {
 import {
   motion,
   AnimatePresence,
-  Transition,
+  type Transition,
   type VariantLabels,
   type Target,
-  type AnimationControls,
   type TargetAndTransition,
 } from "framer-motion";
 
@@ -28,15 +27,17 @@ export interface RotatingTextRef {
   reset: () => void;
 }
 
+type MotionSpanProps = React.ComponentPropsWithoutRef<typeof motion.span>;
+
 export interface RotatingTextProps
   extends Omit<
-    React.ComponentPropsWithoutRef<typeof motion.span>,
+    MotionSpanProps,
     "children" | "transition" | "initial" | "animate" | "exit"
   > {
   texts: string[];
   transition?: Transition;
   initial?: boolean | Target | VariantLabels;
-  animate?: boolean | VariantLabels | AnimationControls | TargetAndTransition;
+  animate?: MotionSpanProps["animate"]; // match whatever motion.span expects
   exit?: Target | VariantLabels;
   animatePresenceMode?: "sync" | "wait";
   animatePresenceInitial?: boolean;
@@ -81,10 +82,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
     const splitIntoCharacters = (text: string): string[] => {
       if (typeof Intl !== "undefined" && Intl.Segmenter) {
         const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
-        return Array.from(
-          segmenter.segment(text),
-          (segment) => segment.segment
-        );
+        return Array.from(segmenter.segment(text), (segment) => segment.segment);
       }
       return Array.from(text);
     };
@@ -119,16 +117,14 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
 
     const getStaggerDelay = useCallback(
       (index: number, totalChars: number): number => {
-        const total = totalChars;
         if (staggerFrom === "first") return index * staggerDuration;
-        if (staggerFrom === "last")
-          return (total - 1 - index) * staggerDuration;
+        if (staggerFrom === "last") return (totalChars - 1 - index) * staggerDuration;
         if (staggerFrom === "center") {
-          const center = Math.floor(total / 2);
+          const center = Math.floor(totalChars / 2);
           return Math.abs(center - index) * staggerDuration;
         }
         if (staggerFrom === "random") {
-          const randomIndex = Math.floor(Math.random() * total);
+          const randomIndex = Math.floor(Math.random() * totalChars);
           return Math.abs(randomIndex - index) * staggerDuration;
         }
         return Math.abs((staggerFrom as number) - index) * staggerDuration;
