@@ -49,6 +49,7 @@ export default function Home() {
       >
         Vellapaper
       </a>
+      <br />PS : bullies kyyanite
       <div className="flex pr-3 text-[14px] text-gray-500 font-bold justify-center"> {/*<div>in dev -: </div>*/}
       </div>
 
