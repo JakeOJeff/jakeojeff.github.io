@@ -1,11 +1,32 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { marked } from "marked";
+import fs from "fs";
+import path from "path";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
+
+// Generate static params for all blog posts at build time
+export async function generateStaticParams() {
+  try {
+    const postsDirectory = path.join(process.cwd(), 'public/data');
+    const filenames = fs.readdirSync(postsDirectory);
+    const slugs = filenames
+      .filter(name => name.endsWith('.md'))
+      .map(name => name.replace(/\.md$/, ''));
+    
+    return slugs.map((slug) => ({
+      slug: slug,
+    }));
+  } catch (error) {
+    console.warn('Could not read posts directory, returning empty array:', error);
+    // Return at least one example slug or empty array
+    return [];
+  }
+}
+
+"use client";
 
 export default function BlogPost({ params }: PageProps) {
   const [slug, setSlug] = useState<string>("");
