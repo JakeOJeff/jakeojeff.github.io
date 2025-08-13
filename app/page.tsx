@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import Stack from "./Stack";
 import RotatingText from './RotatingText';
@@ -14,11 +14,11 @@ const images = [
 
 
 export default function Home() {
-  let name = "Paulyn {JakeOJeff}"
+  const name = "Paulyn {JakeOJeff}"
 
-  let linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
+  const linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
 
-  let pageLinkValues = "flex items-center gap-1 m-1 text-[20px]  text-gray-500 hover:text-gray-800 duration-500 hover:animate-pulse"
+  const pageLinkValues = "flex items-center gap-1 m-1 text-[20px]  text-gray-500 hover:text-gray-800 duration-500 hover:animate-pulse"
 
   const desc = (
     <>

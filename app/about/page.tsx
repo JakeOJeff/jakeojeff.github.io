@@ -1,10 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-
-
 
 export default function Home() {
-  let linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
+  const linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
 
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen text-black">
