@@ -7,6 +7,8 @@ export const font = Josefin_Sans({
   weight: ['400'],
   subsets: ['latin'],
 })
+
+
 export const metadata: Metadata = {
   title: "Paulyn",
   description: "Portfolio",
@@ -20,6 +22,7 @@ export default function RootLayout({
   return (
 <html lang="en">
   <body className={font.className}>
+    {/* <body style={{ fontFamily: '"Times New Roman", Times, serif' }}> */}
     {children}
   </body>
 </html>
