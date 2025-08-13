@@ -28,7 +28,7 @@ useEffect(() => {
   if (error) return <div className="p-10 text-red-500">Post not found.</div>;
 
   return (
-<main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 mx-auto">
+<main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
   <div dangerouslySetInnerHTML={{ __html: content }} />
 </main>
 
