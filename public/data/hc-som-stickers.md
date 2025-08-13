@@ -1,6 +1,6 @@
 
 
-  # Hackclub SOM Stickers!
+# Hackclub SOM Stickers!
 
 ## Date : 12-08-2025
 
