@@ -1,36 +1,53 @@
-import fs from "fs";
-import path from "path";
+"use client";
+
+import { useEffect, useState } from "react";
 import { marked } from "marked";
 
-export async function generateStaticParams() {
-  const postsDir = path.join(process.cwd(), "public/data");
-  const files = fs.readdirSync(postsDir);
-
-  return files
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => ({
-      slug: file.replace(/\.md$/, ""),
-    }));
+interface PageProps {
+  params: Promise<{ slug: string }>;
 }
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const filePath = path.join(process.cwd(), "public/data", `${params.slug}.md`);
+export default function BlogPost({ params }: PageProps) {
+  const [slug, setSlug] = useState<string>("");
+  const [content, setContent] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  let html: string;
-  try {
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    html = await marked.parse(fileContent); // ✅ await because it's async
-  } catch {
-    html = "<h1>Post not found</h1>";
-  }
+  useEffect(() => {
+    const getSlug = async () => {
+      const resolvedParams = await params;
+      setSlug(resolvedParams.slug);
+    };
+
+    getSlug();
+  }, [params]);
+
+  useEffect(() => {
+    if (!slug) return;
+
+    const loadPost = async () => {
+      try {
+        const res = await fetch(`/data/${slug}.md`);
+        if (!res.ok) throw new Error("Post not found");
+        const text = await res.text();
+        const html = await marked.parse(text);
+        setContent(html);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPost();
+  }, [slug]);
+
+  if (loading) return <div className="p-10">Loading...</div>;
+  if (error) return <div className="p-10 text-red-500">Post not found.</div>;
 
   return (
-    <main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+    <main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 mx-auto">
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );
 }
