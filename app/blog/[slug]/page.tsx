@@ -1,3 +1,5 @@
+
+
 import { marked } from "marked";
 import fs from "fs";
 import path from "path";
@@ -32,15 +34,16 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: PageProps) {
   const { slug } = await params;
-  
+
   try {
     // Read the markdown file at build time
     const filePath = path.join(process.cwd(), 'public/data', `${slug}.md`);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const html = await marked.parse(fileContent);
-    
+
     return (
       <main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
+
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </main>
     );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 type Post = {
   slug: string;
@@ -12,6 +13,7 @@ type Post = {
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const pathname = usePathname();
 
   useEffect(() => {
     fetch("/data/blog-posts.json")
@@ -20,9 +22,10 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <main className="bg-gray-200 text-black min-h-screen px-6 py-10">
+    <main className="bg-gray-200 text-black min-h-screen">
+      <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {posts.map((post) => (
           <Link
             key={post.slug}

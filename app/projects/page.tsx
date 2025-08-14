@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import githubIcon from '/public/github.svg';
 import globeIcon from '/public/globe.svg';
 import { hover } from "framer-motion";
+import { usePathname } from 'next/navigation';
 
 const projects = [
   {
@@ -69,6 +70,7 @@ const languageColors: Record<string, string> = {
 export default function Projects() {
   const [hoverImage, setHoverImage] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -79,9 +81,10 @@ export default function Projects() {
   }, []);
 
   return (
-    <main className="bg-gray-200 text-black min-h-screen px-6 py-10">
+    <main className="bg-gray-200 text-black min-h-screen ">
+      <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {projects.map((repo, i) => (
           <div
             key={i}

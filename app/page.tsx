@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Stack from "./Stack";
 import RotatingText from './RotatingText';
+import { usePathname } from 'next/navigation';
 
 
 const images = [
@@ -15,6 +16,7 @@ const images = [
 
 export default function Home() {
   const name = "Paulyn {JakeOJeff}"
+  const pathname = usePathname();
 
   const linkValues = " text-gray-700 hover:text-gray-800 duration-500 "
 
@@ -58,6 +60,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen text-black">
+      <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
       {/* Centered main content */}
       <div className="flex-grow flex justify-center items-center p-4">
