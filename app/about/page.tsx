@@ -5,10 +5,6 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen text-black">
 
-      {/* Top Header Content */}
-      <div className="m-10 text-lg font-mono">
-        ~ /about
-      </div>
 
       {/* Centered main content */}
       <div className="flex-grow flex justify-center items-center p-4">

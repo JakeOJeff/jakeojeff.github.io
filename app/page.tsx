@@ -1,3 +1,5 @@
+"use client"
+
 // import Image from "next/image";
 import Link from "next/link";
 import Stack from "./Stack";
@@ -15,7 +17,7 @@ const images = [
 export default function Home() {
   const name = "Paulyn {JakeOJeff}"
 
-  const linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
+  const linkValues = " text-gray-700 hover:text-gray-800 duration-500 "
 
   const pageLinkValues = "flex items-center gap-1 m-1 text-[20px]  text-gray-500 hover:text-gray-800 duration-500 hover:animate-pulse"
 
@@ -57,11 +59,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen text-black">
-
-      {/* Top Header Content */}
-      <div className="m-10 text-lg font-mono">
-        ~ /
-      </div>
 
       {/* Centered main content */}
       <div className="flex-grow flex justify-center items-center p-4">
@@ -121,7 +118,7 @@ export default function Home() {
       <div className="flex justify-center items-center pb-6">
         <a href="https://github.com/jakeojeff">
           <RotatingText
-            texts={['Stacks Against You.', 'Flowlog.', 'Luminzier.', 'OSSint.', 'JKPhys.']}
+            texts={['Stacks Against You.', 'Flowlog.', 'Luminzier.', 'OSSint.', 'JKPhys.', "Tales of Orbis"]}
             mainClassName="ml-2 text-gray-500 hover:text-gray-800 duration-500"
             staggerFrom={"last"}
             initial={{ y: "100%" }}

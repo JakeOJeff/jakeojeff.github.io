@@ -21,7 +21,6 @@ export default function BlogPage() {
 
   return (
     <main className="bg-gray-200 text-black min-h-screen px-6 py-10">
-      <div className="m-4 text-lg font-mono text-gray-500">~/blog</div>
 
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (

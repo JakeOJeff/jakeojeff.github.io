@@ -4,11 +4,6 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen text-black" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
 
-      {/* Top Header Content */}
-      <div className="m-10 text-lg font-mono">
-        ~ /kyyanite
-      </div>
-
       {/* Centered main content */}
       <div className="flex-grow flex justify-center items-center p-4">
         <main className="w-full max-w-5xl">
