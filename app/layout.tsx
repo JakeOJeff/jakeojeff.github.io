@@ -33,7 +33,7 @@ export default function RootLayout({
 
       <body className={font.className}>
         <header>
-          <p className=" text-lg font-mono">~{pathname}</p>
+          <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
         </header>
         {children}
       </body>

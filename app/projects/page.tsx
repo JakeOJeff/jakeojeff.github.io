@@ -14,7 +14,7 @@ const projects = [
     repo: "https://github.com/jakeojeff/stacks-against-you",
     screenshot: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/f70284c76409e4b83fa715a46a40d9578aa6aeb6_image.png",
     language: "TypeScript",
-    commits: 134,
+    commits: 132,
   },
   {
     name: "OSSint",
@@ -22,7 +22,7 @@ const projects = [
     repo: "https://github.com/jakeojeff/ossint",
     screenshot: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1503cd96bdf7018a9269ced62486a37c731c008c_image.png",
     language: "JavaScript",
-    commits: 32,
+    commits: 39,
   },
   {
     name: "Vellapaper",
@@ -30,8 +30,24 @@ const projects = [
     demo: "https://vellapaper.com",
     repo: "https://github.com/jakeojeff/vellapaper",
     screenshot: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/d72d9eaa6779158b6d66634f65f3cb400f3b03df_image.png",
-    language: "TypeScript",
+    language: "Liquid",
     commits: 20,
+  },
+    {
+    name: "Cozy Music Player",
+    description: "A cozy music player made using Lua",
+    repo: "https://github.com/JakeOJeff/cozy-music-player",
+    screenshot: "https://private-user-images.githubusercontent.com/87922888/421841911-d0e7cf45-169c-4745-b5b4-4cfd498bfafa.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTUyMDcxNzUsIm5iZiI6MTc1NTIwNjg3NSwicGF0aCI6Ii84NzkyMjg4OC80MjE4NDE5MTEtZDBlN2NmNDUtMTY5Yy00NzQ1LWI1YjQtNGNmZDQ5OGJmYWZhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODE0VDIxMjc1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdlNmFmMTExNTkxOWVmZDkxZjM2ZDlhZjM4Njk5ZGM5ZjY4ZjIxZjQyYjI1YTE1YjhkMGI4ZDg3MTJlYTRkNTQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.60O97rHpXvxmA7IpASNqlpMSjOCNNLNpzSDnLTpG7SQ",
+    language: "Lua",
+    commits: 10,
+  },
+      {
+    name: "2D Physics Engine",
+    description: "A 2D physics engine built from scratch",
+    repo: "https://github.com/JakeOJeff/Physics-Engine",
+    screenshot: "https://private-user-images.githubusercontent.com/87922888/426685612-f3c9d1ba-524a-4fef-a95d-dfe103823dc6.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTUyMDczNTEsIm5iZiI6MTc1NTIwNzA1MSwicGF0aCI6Ii84NzkyMjg4OC80MjY2ODU2MTItZjNjOWQxYmEtNTI0YS00ZmVmLWE5NWQtZGZlMTAzODIzZGM2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODE0VDIxMzA1MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThhM2JlOGYxZmE1ZWM3YzY5ZTljZGYxNDEyOWRiODQ0OGNmY2U4NjlmYzlmN2RkZjA2ZmNiOGNlNWM0MTAzYWMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Ie879sxhVeIrFgKR73qTrF7OZsL1cxHHaDRQBYiE5dQ",
+    language: "Lua",
+    commits: 7,
   },
   // Add more manually if needed
 ];
@@ -44,6 +60,7 @@ const languageColors: Record<string, string> = {
   CSS: "#563d7c",
   Shell: "#89e051",
   C: "#555555",
+  Liquid: "#67b8de",
   Cpp: "#f34b7d",
   Rust: "#dea584",
   Lua: "#000080",
