@@ -27,7 +27,7 @@ export async function generateStaticParams() {
     return [
       { slug: 'hc-some-stickers' },
       { slug: 'love-js-build' },
-      // Add your actual blog post slugs here
+
     ];
   }
 }

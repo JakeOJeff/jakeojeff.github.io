@@ -50,7 +50,6 @@ const projects = [
     language: "Lua",
     commits: 7,
   },
-  // Add more manually if needed
 ];
 
 const languageColors: Record<string, string> = {
