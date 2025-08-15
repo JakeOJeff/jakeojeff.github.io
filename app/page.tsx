@@ -78,7 +78,7 @@ export default function Home() {
             </div>
 
             {/* Right: Text & Links */}
-            <div className="flex-1 text-center lg:text-left">
+            <div className="flex-1  text-center lg:text-left">
               <div className="flex justify-center md:justify-start items-center font-bold mb-4">
                 <div className="flex items-center gap-2">
                   <h1 className="text-4xl">{name}</h1>
@@ -89,7 +89,7 @@ export default function Home() {
 
               <h3 className="text-lg mb-6">{desc}</h3>
 
-              <div className="flex flex-col items-center lg:items-start">
+              <div className="flex flex-col justify-center items-center lg:items-start">
                 <Link href={"/about"} className={pageLinkValues}>
                   about
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-4 ml-1">
