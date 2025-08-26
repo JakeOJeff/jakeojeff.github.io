@@ -78,15 +78,13 @@ export default function Home() {
             </div>
 
             {/* Right: Text & Links */}
-            <div className="flex-1  text-center lg:text-left">
+            <div className="flex-1 text-center md:text-left">
               <div className="flex justify-center md:justify-start items-center font-bold mb-4">
                 <div className="flex items-center gap-2">
                   <h1 className="text-4xl">{name}</h1>
                   <div className="w-2 h-2 animate-ping rounded-full bg-green-500"></div>
                 </div>
               </div>
-
-
               <h3 className="text-lg mb-6">{desc}</h3>
 
               <div className="flex flex-col justify-center items-center lg:items-start">
