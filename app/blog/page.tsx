@@ -37,7 +37,7 @@ export default function BlogPage() {
               <p className="text-sm text-gray-500 mt-1">{post.description}</p>
               <div className="flex justify-between items-center">
                 <div className="mt-2 text-sm text-gray-400">{post.date}</div>
-                <p className=" text-sky-600 transition duration-300">Read More &#62&#62<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span></p>
+                <p className=" text-sky-600 transition duration-300">Read More &#62;&#62;<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span></p>
               </div>
 
             </Link>
