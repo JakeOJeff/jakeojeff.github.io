@@ -8,8 +8,8 @@ import { usePathname } from 'next/navigation';
 
 
 const images = [
-  { id: 1, img: "/images/2.jpeg" },
-  { id: 2, img: "/images/1.jpeg" },
+//   { id: 1, img: "/images/2.jpeg" },
+  { id: 1, img: "/images/1.jpeg" },
 ];
 
 
