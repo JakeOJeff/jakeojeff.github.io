@@ -25,7 +25,7 @@ export default function Home() {
   const desc = (
     <>
 
-      <strong>12th grade programmer</strong> and <strong>cyber-pentester</strong>, created a no-database fully private online chatting app called {' '}
+      <strong>12th grade programmer, game developer</strong> and <strong>cyber-pentester</strong>, created a no-database fully private online chatting app called {' '}
       <a
         href="https://github.com/jakeojeff/stacks-against-you"
         target="_blank"
@@ -50,7 +50,7 @@ export default function Home() {
         className={linkValues}
       >
         Vellapaper
-      </a>
+      </a>,  bounty hunter for Hackclub and mod @ W3Schools.
       <br />PS : bullies <a href="/kyyanite" className={linkValues}>Kyyanite</a>
       <div className="flex pr-3 text-[14px] text-gray-500 font-bold justify-center"> {/*<div>in dev -: </div>*/}
       </div>
@@ -83,6 +83,7 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <h1 className="text-4xl">{name}</h1>
                   <div className="w-2 h-2 animate-ping rounded-full bg-green-500"></div>
+                  <a href="/contact" className="bg-gray-200/30  p-4 pt-2 pb-2 rounded-3xl text-black cursor-pointer  transition-all duration-300 hover:bg-black hover:text-white ">Get in touch</a>
                 </div>
               </div>
               <h3 className="text-lg mb-6">{desc}</h3>
