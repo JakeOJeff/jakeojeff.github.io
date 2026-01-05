@@ -102,6 +102,32 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
                   </svg>
                 </Link>
+<Link href={"https://jakeojeff.itch.io"} className={pageLinkValues}>
+  games
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="2.5"
+    stroke="currentColor"
+    className="size-4 ml-1"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6.75 11.25h10.5
+         a3.75 3.75 0 0 1 3.75 3.75v1.5
+         a3 3 0 0 1-3 3
+         c-.83 0-1.6-.34-2.15-.9l-1.1-1.1
+         a1.5 1.5 0 0 0-2.12 0l-1.1 1.1
+         a3 3 0 0 1-2.15.9
+         a3 3 0 0 1-3-3V15
+         a3.75 3.75 0 0 1 3.75-3.75Z"
+    />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 14.25h.01M7.5 15.75h.01M10.5 15.75h.01" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 14.25h.01M17.25 15.75h.01" />
+  </svg>
+</Link>
 
                 <Link href={"/blog"} className={pageLinkValues}>
                   blogs
