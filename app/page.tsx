@@ -25,7 +25,15 @@ export default function Home() {
   const desc = (
     <>
 
-      <strong>12th grade programmer, game developer</strong> and <strong>cyber-pentester</strong>, created a no-database fully private online chatting app called {' '}
+      <strong>18 yr old programmer, game developer</strong> and <strong>cyber-pentester</strong>, created a language compiler <a
+        href="https://github.com/JakeOJeff/lat"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkValues}
+      >
+        LatLang
+      </a> {' '}
+      and{' '} a no-database fully private online chatting app called {' '}
       <a
         href="https://github.com/jakeojeff/stacks-against-you"
         target="_blank"
@@ -33,16 +41,8 @@ export default function Home() {
         className={linkValues}
       >
         Stacks Against You
-      </a>{' '}
-      and{' '}
-      <a
-        href="https://github.com/jakeojeff/ossint"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkValues}
-      >
-        OSSint
-      </a>, person behind{' '}
+      </a>
+      , person behind{' '}
       <a
         href="https://vellapaper.com"
         target="_blank"
