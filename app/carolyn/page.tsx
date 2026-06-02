@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Home() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col bg-gray-200 min-h-screen text-black" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+    <div className="flex flex-col bg-stone-100 min-h-screen text-black">
       <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
       {/* Centered main content */}

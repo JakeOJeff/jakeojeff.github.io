@@ -42,7 +42,7 @@ export default async function BlogPost({ params }: PageProps) {
     const html = await marked.parse(fileContent);
 
     return (
-      <main className="prose bg-gray-200 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
+      <main className="prose bg-stone-100 min-h-screen text-black px-6 py-12 max-w-5xl mx-auto">
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </main>

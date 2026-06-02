@@ -18,9 +18,9 @@ export default function Home() {
   const name = "Paulyn {JakeOJeff}"
   const pathname = usePathname();
 
-  const linkValues = " text-gray-700 hover:text-gray-800 duration-500 "
+  const linkValues = " text-gray-600 hover:text-gray-900 duration-500 "
 
-  const pageLinkValues = "flex items-center gap-1 m-1 text-[20px]  text-gray-500 hover:text-gray-800 duration-500 hover:animate-pulse"
+  const pageLinkValues = "flex items-center gap-1 m-1 text-[20px] text-gray-600 hover:text-gray-900 duration-500 hover:animate-pulse"
 
   const desc = (
     <>
@@ -59,7 +59,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col bg-gray-200 min-h-screen text-black">
+    <div className="flex flex-col bg-stone-100 min-h-screen text-black">
       <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
       {/* Centered main content */}
@@ -83,7 +83,7 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <h1 className="text-4xl">{name}</h1>
                   <div className="w-2 h-2 animate-ping rounded-full bg-green-500"></div>
-                  <a href="/contact" className="bg-gray-200/30  p-4 pt-2 pb-2 rounded-3xl text-black cursor-pointer  transition-all duration-300 hover:bg-black hover:text-white ">Get in touch</a>
+                  <a href="/contact" className="bg-stone-200 p-4 pt-2 pb-2 rounded-3xl text-black cursor-pointer transition-all duration-300 hover:bg-black hover:text-white">Get in touch</a>
                 </div>
               </div>
               <h3 className="text-lg mb-6">{desc}</h3>
@@ -146,7 +146,7 @@ export default function Home() {
         <a href="https://github.com/jakeojeff">
           <RotatingText
             texts={['Stacks Against You.', 'Flowlog.', 'Luminzier.', 'OSSint.', 'JKPhys.', "Tales of Orbis"]}
-            mainClassName="ml-2 text-gray-500 hover:text-gray-800 duration-500"
+            mainClassName="ml-2 text-gray-600 hover:text-gray-900 duration-500"
             staggerFrom={"last"}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}

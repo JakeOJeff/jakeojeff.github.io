@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" className="bg-stone-100">
 
       <body className={font.className}>
         {children}

@@ -3,11 +3,11 @@
 import { usePathname } from 'next/navigation';
 
 export default function Home() {
-  const linkValues = "font-bold text-gray-500 hover:text-gray-800 duration-500 "
+  const linkValues = "font-bold text-gray-600 hover:text-gray-900 duration-500 "
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col bg-gray-200 min-h-screen text-black">
+    <div className="flex flex-col bg-stone-100 min-h-screen text-black">
 
       <p className=" text-lg font-mono ml-10 mt-10">~{pathname}</p>
 
