@@ -54,7 +54,7 @@ export default function Home() {
                     </div>
                     <div className="relative">
                       <a
-                        href="mailto:realjakeojeff@gmail.com"
+                        href="mailto:hey@paulyn.lol"
                         className="inline-block"
                         aria-label="Send email"
                       >
