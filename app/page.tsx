@@ -15,7 +15,7 @@ const images = [
 
 
 export default function Home() {
-  const name = "Paulyn {JakeOJeff}"
+  // name split into JSX below
   const pathname = usePathname();
 
   const linkValues = " text-gray-600 hover:text-gray-900 duration-500 "
@@ -81,7 +81,19 @@ export default function Home() {
             <div className="flex-1 text-center md:text-left">
               <div className="flex justify-center md:justify-start items-center font-bold mb-4">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-4xl">{name}</h1>
+                  <h1 className="text-4xl">
+                    Paulyn {'{'}
+                    <a
+                      href="https://github.com/JakeOJeff"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative inline-block"
+                    >
+                      <span className="transition-opacity duration-700 ease-in-out group-hover:opacity-0">JakeOJeff</span>
+                      <span className="absolute inset-0 bg-gradient-to-b from-neutral-600 to-black bg-clip-text text-transparent opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100">JakeOJeff</span>
+                    </a>
+                    {'}'}
+                  </h1>
                   <div className="w-2 h-2 animate-ping rounded-full bg-green-500"></div>
                   <a href="/contact" className="bg-stone-200 p-4 pt-2 pb-2 rounded-3xl text-black cursor-pointer transition-all duration-300 hover:bg-black hover:text-white">Get in touch</a>
                 </div>
