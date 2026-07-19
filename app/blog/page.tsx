@@ -17,6 +17,19 @@ export default function BlogPage() {
     <main className="bg-stone-100 text-black min-h-screen">
       <p className="text-lg font-mono ml-10 mt-10">~/blog</p>
 
+      <div className="max-w-5xl mx-auto px-6 pt-6">
+        <Link
+          href="/summary"
+          className="group inline-flex items-center gap-2 bg-black text-white px-5 py-3 rounded-xl hover:bg-gray-800 transition duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="size-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+          </svg>
+          <span className="font-medium">Read my whole story</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+        </Link>
+      </div>
+
       <div className="max-w-5xl mx-auto">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {posts.map((post) => (

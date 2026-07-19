@@ -1,21 +1,254 @@
 [
   {
+    "slug": "roblox-beginnings",
+    "title": "my first ever games were roblox obbies",
+    "description": "before löve, before github, i was just a kid making obstacle courses on roblox",
+    "date": "2019-07-01"
+  },
+  {
+    "slug": "found-love2d",
+    "title": "found löve and everything changed",
+    "description": "a lightweight framework perfect for my 4gb ram windows 7 laptop",
+    "date": "2021-02-01"
+  },
+  {
+    "slug": "minersjok-server",
+    "title": "started running my own minecraft server (minersjok)",
+    "description": "minigames, survival, bedwars, and way more admin work than i expected",
+    "date": "2021-07-25"
+  },
+  {
+    "slug": "jsrc-framework",
+    "title": "made my first actual library - JSRC framework",
+    "description": "a gui library for löve so i stop rebuilding the same ui every time",
+    "date": "2022-06-17"
+  },
+  {
+    "slug": "guitar-and-gigs",
+    "title": "the other thing i do - guitar",
+    "description": "electric, acoustic, classical, open gigs and original compositions",
+    "date": "2022-11-01"
+  },
+  {
+    "slug": "anim16-and-car-physics",
+    "title": "two tools in one week - anim16 and a car physics library",
+    "description": "a quickie animation tool and a 2d car physics library for löve",
+    "date": "2023-03-27"
+  },
+  {
+    "slug": "rhythm-game",
+    "title": "making a rhythm game (timing is EVIL)",
+    "description": "combining music and code, fighting with audio sync and beat mapping",
+    "date": "2023-09-04"
+  },
+  {
+    "slug": "2d-physics-engine",
+    "title": "building a 2d physics engine from scratch",
+    "description": "no box2d, no shortcuts, just me and some very humbling collision math",
+    "date": "2024-02-15"
+  },
+  {
+    "slug": "poetry-and-writing",
+    "title": "i also write poetry, weirdly",
+    "description": "not everything i make is code, sometimes its just words",
+    "date": "2024-06-01"
+  },
+  {
+    "slug": "valentines-and-storyboarder",
+    "title": "tiny useful one-offs - a valentine's card maker and a storyboard tool",
+    "description": "small single-purpose tools that ship in an afternoon and keep me honest about scope",
+    "date": "2025-02-11"
+  },
+  {
+    "slug": "cozy-music-player",
+    "title": "made a cozy little music player",
+    "description": "a warm desktop music player in lua, inspired by @Nashallery",
+    "date": "2025-03-12"
+  },
+  {
+    "slug": "portfolio-and-physics-toy",
+    "title": "building my portfolio + a barebones physics toy",
+    "description": "putting together my personal site and an interactive physics model",
+    "date": "2025-03-25"
+  },
+  {
+    "slug": "firespark",
+    "title": "casting spells with my webcam - firespark",
+    "description": "real-time fire sparks on your fingertips using opencv + mediapipe hand tracking",
+    "date": "2025-06-06"
+  },
+  {
+    "slug": "emotional-chatbot",
+    "title": "a chatbot that actually has feelings (kinda)",
+    "description": "an emotionally expressive chatbot in löve with typing sim and flying letters",
+    "date": "2025-06-07"
+  },
+  {
+    "slug": "ossint-security",
+    "title": "getting into security stuff - ossint",
+    "description": "an open source intelligence tool that actually makes sense",
+    "date": "2025-06-16"
+  },
+  {
+    "slug": "flowlog",
+    "title": "flowlog - tracking where my time actually goes",
+    "description": "a mood + productivity app (formerly moodift) for a better way of living",
+    "date": "2025-06-19"
+  },
+  {
+    "slug": "stacks-against-you",
+    "title": "stacks against you - a chat app with NO database",
+    "description": "websockets, caddy, zero database, nothing stored, nothing to leak",
+    "date": "2025-07-12"
+  },
+  {
+    "slug": "luminzier",
+    "title": "a drawing app where you draw with MATH - luminzier",
+    "description": "define shapes with variables and live math expressions instead of a mouse",
+    "date": "2025-07-16"
+  },
+  {
+    "slug": "tales-of-orbis-begins",
+    "title": "starting my biggest game yet - tales of orbis",
+    "description": "an rpg in löve, reach the core before the dawn lights get you",
+    "date": "2025-07-28"
+  },
+  {
     "slug": "hc-som-stickers",
     "title": "Hackclub SOM Stickers!",
     "description": "I finally got some stickers!!",
     "date": "2025-08-12"
   },
-    {
+  {
     "slug": "love-js-build",
     "title": "LOVE JS BUILD",
     "description": "Figuring out how to push games to web",
     "date": "2025-08-14"
   },
-    {
+  {
+    "slug": "lua-ui-library",
+    "title": "building a react-like ui library in lua - levelisteria",
+    "description": "a declarative component system for löve, hiding inside a life-gamifying demo",
+    "date": "2025-08-17"
+  },
+  {
+    "slug": "orbis-universe",
+    "title": "expanding orbis into a whole universe - liora and nullborn",
+    "description": "one world told across multiple games and formats, even trying godot",
+    "date": "2025-08-24"
+  },
+  {
+    "slug": "game-over-reverse-mystery",
+    "title": "a murder mystery told BACKWARDS - game over",
+    "description": "a puzzle game where you rewind a murder instead of solving it forward",
+    "date": "2025-09-08"
+  },
+  {
+    "slug": "gratitude-quest",
+    "title": "made a game for my birthday to say thank you - gratitude quest",
+    "description": "a playable thank-you letter for everyone who helped me on my löve journey",
+    "date": "2025-09-09"
+  },
+  {
     "slug": "hc-rpg-cards",
     "title": "RPG CARDS!",
     "description": "Got RPG cards from HC",
     "date": "2025-09-07"
+  },
+  {
+    "slug": "foss-flip-community",
+    "title": "open source, community and the kerala foss scene - foss-flip",
+    "description": "a community meme generator as an on-ramp for first-time open source contributors",
+    "date": "2025-09-20"
+  },
+  {
+    "slug": "signalizer",
+    "title": "encoding, decoding and hashing as a service - signalizer",
+    "description": "a clean encoder/decoder tool with api endpoints and sha-256 hashing",
+    "date": "2025-10-17"
+  },
+  {
+    "slug": "little-games-spree",
+    "title": "a bunch of little games in a row - coinage, fallclicker, pollocks",
+    "description": "a coin physics game, a cozy maple-leaf clicker, and an asteroids space drifter",
+    "date": "2025-10-23"
+  },
+  {
+    "slug": "spellfluid",
+    "title": "fluid simulation is actually mesmerizing - spellfluid",
+    "description": "a euler-grid + particle fluid simulator, hypnotic to watch",
+    "date": "2025-10-11"
+  },
+  {
+    "slug": "gospooks",
+    "title": "trying go with a horror cli game - gospooks",
+    "description": "learning go by building a spooky text-based escape game",
+    "date": "2025-10-29"
+  },
+  {
+    "slug": "jengine",
+    "title": "jengine - packaging my physics knowledge into an engine",
+    "description": "a grid-based physics engine inspired by box2d, finally done properly",
+    "date": "2025-11-06"
+  },
+  {
+    "slug": "ai-as-a-tool-not-a-crutch",
+    "title": "where i stand on using ai to build stuff",
+    "description": "ai as a tutor that accelerates learning, not a vending machine for finished code",
+    "date": "2025-11-20"
+  },
+  {
+    "slug": "lat-compiler",
+    "title": "i built a compiler. an actual compiler. - lat",
+    "description": "a ruby-based compiler turning a custom language into lua",
+    "date": "2025-11-21"
+  },
+  {
+    "slug": "winpedia",
+    "title": "a social media app where you FREEZE if you dont post - winpedia",
+    "description": "a winter-themed social app that turns engagement mechanics into the literal plot",
+    "date": "2025-11-29"
+  },
+  {
+    "slug": "lemines-minesweeper-ai",
+    "title": "a minesweeper AI that thinks like a person - lemines",
+    "description": "a solver that deduces, expands, and gambles under uncertainty just like a human",
+    "date": "2025-12-04"
+  },
+  {
+    "slug": "kochitransit",
+    "title": "building a transit app for my own city - kochitransit",
+    "description": "civic tech for kochi, and my first real dive into react native + expo",
+    "date": "2026-02-26"
+  },
+  {
+    "slug": "podo-pomodoro",
+    "title": "a pomodoro timer, but in a game engine - podo",
+    "description": "a web pomodoro timer built in löve because i keep rebuilding my own tools",
+    "date": "2026-03-07"
+  },
+  {
+    "slug": "jvpn-homelab",
+    "title": "wiring my own machines together - jvpn + the nixos rabbit hole",
+    "description": "a wireguard vpn between my pc and laptop, and going all-in on nixos",
+    "date": "2026-03-18"
+  },
+  {
+    "slug": "seashell",
+    "title": "wrote a unix shell from scratch in c - seashell",
+    "description": "command parsing, piping, processes, and c being brutally instructive",
+    "date": "2026-02-23"
+  },
+  {
+    "slug": "backend-and-security-2026",
+    "title": "going deeper on backend and security - mantis, memsnoop, logo-scraper",
+    "description": "a scaffolding cli, memory introspection, and reproducible scraping pipelines",
+    "date": "2026-04-28"
+  },
+  {
+    "slug": "stuff-ive-actually-pulled-off",
+    "title": "stuff ive actually pulled off (a lil brag post)",
+    "description": "the compiler, the game universe, hackclub, the server, the gigs — writing it down for once",
+    "date": "2026-07-15"
   }
-
 ]
