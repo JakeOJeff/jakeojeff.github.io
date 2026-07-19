@@ -6,7 +6,7 @@ import githubIcon from '/public/github.svg';
 import globeIcon from '/public/globe.svg';
 import { usePathname } from 'next/navigation';
 
-const projects = [
+const projectsData = [
   {
     name: "Tales of Orbis",
     description: "Reach the core before Dawn Lights you up with Null. A full RPG built in LÖVE with custom engine systems.",
@@ -257,93 +257,110 @@ const languageColors: Record<string, string> = {
 };
 
 export default function Projects() {
-  const [hoverImage, setHoverImage] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [search, setSearch] = useState("");
+  const [expanded, setExpanded] = useState<number | null>(0);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  const filtered = projectsData.filter(p =>
+    p.name.toLowerCase().includes(search.toLowerCase()) ||
+    p.description.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <main className="bg-stone-100 text-black min-h-screen">
-      <p className="text-lg font-mono ml-10 mt-10">~{pathname}</p>
+    <main className="bg-stone-100 text-black min-h-screen p-6">
+      <p className="text-lg font-mono ml-4 mt-6 mb-8">~{pathname}</p>
 
-      <div className="max-w-5xl mx-auto">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {projects.map((repo, i) => (
+      <div className="max-w-3xl mx-auto">
+        {/* Search Bar */}
+        <div className="mb-8">
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          />
+        </div>
+
+        {/* Accordions */}
+        <div className="space-y-4">
+          {filtered.map((repo, i) => (
             <div
               key={i}
-              className="bg-white p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition"
-              onMouseEnter={() => repo.screenshot && setHoverImage(repo.screenshot)}
-              onMouseLeave={() => setHoverImage(null)}
+              className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition"
             >
-              <h2 className="text-xl font-semibold text-gray-800">{repo.name}</h2>
-              <p className="text-sm text-gray-500 mt-1">{repo.description}</p>
-
-              <div className="flex items-center justify-between mt-3 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  {repo.language && (
-                    <span className="flex items-center gap-1">
-                      <span
-                        className="w-3 h-3 rounded-full"
-                        style={{
-                          backgroundColor: languageColors[repo.language] || "#999",
-                        }}
-                      />
-                      {repo.language}
-                    </span>
-                  )}
-                  <span>• {repo.commits} commits</span>
+              {/* Header Row */}
+              <button
+                onClick={() => setExpanded(expanded === i ? null : i)}
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition text-left"
+              >
+                <div className="flex items-center gap-4 flex-1">
+                  <span
+                    className={`text-xl text-gray-600 transition ${
+                      expanded === i ? "rotate-180" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                  <h2 className="text-lg font-semibold text-gray-800">{repo.name}</h2>
                 </div>
 
-                <div className="flex gap-3 text-xl">
-                  {repo.demo && (
-                    <a
-                      href={repo.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Live Demo"
-                      className="hover:scale-105 duration-500 transition"
-                    >
-                      <Image src={globeIcon} alt="Website" width={24} height={24} />
-                    </a>
-                  )}
-                  {repo.repo && (
-                    <a
-                      href={repo.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="GitHub"
-                      className="hover:scale-105 duration-500 transition"
-                    >
-                      <Image src={githubIcon} alt="GitHub" width={24} height={24} />
-                    </a>
-                  )}
+                {repo.language && (
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <span
+                      className="w-3 h-3 rounded-full"
+                      style={{
+                        backgroundColor: languageColors[repo.language] || "#999",
+                      }}
+                    />
+                    <span>{repo.language}</span>
+                  </div>
+                )}
+              </button>
+
+              {/* Expanded Content */}
+              {expanded === i && (
+                <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                  <p className="text-gray-700 mb-4">{repo.description}</p>
+
+                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                    <span>{repo.commits} commits</span>
+                  </div>
+
+                  <div className="flex gap-4">
+                    {repo.demo && (
+                      <a
+                        href={repo.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition text-sm font-medium"
+                      >
+                        <Image src={globeIcon} alt="Website" width={16} height={16} />
+                        Live Demo
+                      </a>
+                    )}
+                    {repo.repo && (
+                      <a
+                        href={repo.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition text-sm font-medium"
+                      >
+                        <Image src={githubIcon} alt="GitHub" width={16} height={16} />
+                        Repository
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
-      </div>
 
-      {hoverImage && (
-        <div
-          className="pointer-events-none fixed z-50 transition duration-100"
-          style={{
-            top: mousePosition.y + 20,
-            left: mousePosition.x + 20,
-            width: "400px",
-            height: "auto",
-          }}
-        >
-          <img src={hoverImage} alt="Screenshot preview" className="rounded-lg shadow-lg border border-gray-200" />
-        </div>
-      )}
+        {filtered.length === 0 && (
+          <p className="text-center text-gray-500 mt-8">No projects found</p>
+        )}
+      </div>
     </main>
   );
 }

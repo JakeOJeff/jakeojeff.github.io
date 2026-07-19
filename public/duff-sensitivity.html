@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step B — Duff formylation sensitivity panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{
+    --bg:#191b1c;
+    --panel:#212425;
+    --panel-2:#26292a;
+    --line:#34383a;
+    --line-strong:#454a4d;
+    --text:#eeece4;
+    --text-dim:#9a9c94;
+    --text-faint:#6c6f6b;
+    --amber:#e8a33d;
+    --amber-dim:#8a6224;
+    --green:#4fd1ae;
+    --green-dim:#2e7d68;
+    --red:#e2645a;
+    --mono:'IBM Plex Mono', monospace;
+    --sans:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:48px 24px 80px;}
+
+  header{
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+    margin-bottom:36px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin:0 0 10px;
+  }
+  h1{
+    font-size:28px;
+    font-weight:600;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .sub{
+    color:var(--text-dim);
+    font-size:15px;
+    line-height:1.6;
+    max-width:640px;
+    margin:0;
+  }
+  .rxn-strip{
+    display:flex;
+    align-items:center;
+    gap:0;
+    margin-top:24px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-dim);
+    flex-wrap:wrap;
+  }
+  .rxn-node{
+    padding:8px 14px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--text);
+  }
+  .rxn-arrow{padding:0 10px; color:var(--text-faint);}
+
+  .grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:22px 24px;
+  }
+  .panel-title{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin:0 0 18px;
+  }
+
+  .control{margin-bottom:22px;}
+  .control:last-child{margin-bottom:0;}
+  .control-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:8px;
+  }
+  .control-label{font-size:14px; color:var(--text);}
+  .control-value{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:500;
+    color:var(--amber);
+  }
+  input[type=range]{
+    -webkit-appearance:none;
+    width:100%;
+    height:2px;
+    background:var(--line-strong);
+    border-radius:2px;
+    outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--amber);
+    cursor:pointer;
+    border:2px solid var(--bg);
+    box-shadow:0 0 0 1px var(--amber-dim);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--amber);
+    cursor:pointer;
+    border:2px solid var(--bg);
+  }
+  .range-ticks{
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--text-faint);
+    margin-top:4px;
+  }
+
+  .readouts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .readout{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:16px 18px;
+  }
+  .readout-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin-bottom:8px;
+  }
+  .readout-value{
+    font-family:var(--mono);
+    font-size:30px;
+    font-weight:500;
+    color:var(--green);
+    line-height:1;
+  }
+  .readout-value.delta-pos{color:var(--green);}
+  .readout-value.delta-neg{color:var(--red);}
+  .readout-sub{
+    font-size:12px;
+    color:var(--text-dim);
+    margin-top:6px;
+  }
+
+  .chart-wrap{position:relative; width:100%; height:230px;}
+
+  .note{
+    font-size:13px;
+    color:var(--text-dim);
+    line-height:1.6;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+    padding-top:16px;
+  }
+  .note strong{color:var(--text);}
+
+  .calc-formula{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--amber);
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:10px 14px;
+    margin-bottom:16px;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  .calc-table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:var(--mono);
+    font-size:13px;
+  }
+  .calc-table th{
+    text-align:left;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    font-weight:500;
+    padding:0 10px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  .calc-table td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    color:var(--text);
+  }
+  .calc-table td:first-child{color:var(--text-dim); font-family:var(--sans);}
+  .calc-table tr:last-child td{border-bottom:none;}
+  .calc-final{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--green);
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--line-strong);
+  }
+
+  footer{
+    margin-top:36px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Step B — sensitivity panel</p>
+    <h1>Duff formylation of 2,4-di-tert-butylphenol</h1>
+    <p class="sub">Adjust the four process variables to see how projected yield of 3,5-di-tert-butylsalicylaldehyde responds, and which variable the outcome is most sensitive to.</p>
+    <div class="rxn-strip">
+      <span class="rxn-node">2,4-di-tert-butylphenol + HMTA</span>
+      <span class="rxn-arrow">&#8594;</span>
+      <span class="rxn-node">HOAc, 130&deg;C, 2 hr</span>
+      <span class="rxn-arrow">&#8594;</span>
+      <span class="rxn-node">H&#8322;SO&#8324; (aq), 105&deg;C</span>
+      <span class="rxn-arrow">&#8594;</span>
+      <span class="rxn-node">3,5-di-tert-butylsalicylaldehyde</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="panel">
+      <p class="panel-title">Process variables</p>
+      <div id="controls"></div>
+    </div>
+
+    <div>
+      <div class="readouts">
+        <div class="readout">
+          <div class="readout-label">Projected yield</div>
+          <div class="readout-value" id="yield-out">--</div>
+          <div class="readout-sub">of theoretical</div>
+        </div>
+        <div class="readout">
+          <div class="readout-label">Vs. nominal baseline</div>
+          <div class="readout-value" id="delta-out">--</div>
+          <div class="readout-sub" id="baseline-sub">baseline --%</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <p class="panel-title">Sensitivity ranking</p>
+        <div class="chart-wrap">
+          <canvas id="tornado" role="img" aria-label="Tornado chart ranking sensitivity of yield to each process variable"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Model basis:</strong> this is an illustrative response-surface model calibrated so the published nominal conditions (1.5 eq HMTA, 130&deg;C/2&nbsp;hr, 105&deg;C hydrolysis) sit near the peak &mdash; not measured kinetic data. Treat it as a template: replace the penalty curves with a fitted regression once real replicate yields at varied conditions are available.
+  </div>
+
+  <div class="panel" style="margin-top:20px;">
+    <p class="panel-title">Calculation breakdown</p>
+    <div class="calc-formula">yield = base &times; P(HMTA) &times; P(T&#8321;) &times; P(time&#8321;) &times; P(T&#8322;)</div>
+    <table class="calc-table">
+      <thead>
+        <tr><th>Term</th><th>Formula</th><th>Current input</th><th>Factor value</th></tr>
+      </thead>
+      <tbody id="calc-body"></tbody>
+    </table>
+    <div class="calc-final" id="calc-final"></div>
+  </div>
+
+  <footer>ORG. SYNTH. 1998, 75, 1 &mdash; STEP B, DUFF FORMYLATION</footer>
+</div>
+
+<script>
+const vars = [
+  { key:'hmta', label:'HMTA equivalents', min:0.5, max:3.0, step:0.05, nominal:1.5, unit:' eq' },
+  { key:'t1', label:'Step 1 temp (HOAc)', min:100, max:150, step:1, nominal:130, unit:'\u00B0C' },
+  { key:'time1', label:'Step 1 time', min:0.5, max:5, step:0.1, nominal:2, unit:' hr' },
+  { key:'t2', label:'Step 2 temp (H2SO4 hydrolysis)', min:80, max:120, step:1, nominal:105, unit:'\u00B0C' }
+];
+
+const state = {};
+vars.forEach(v => state[v.key] = v.nominal);
+
+const controls = document.getElementById('controls');
+vars.forEach(v => {
+  const row = document.createElement('div');
+  row.className = 'control';
+  row.innerHTML = `
+    <div class="control-head">
+      <span class="control-label">${v.label}</span>
+      <span class="control-value" id="o-${v.key}">${v.nominal}${v.unit}</span>
+    </div>
+    <input type="range" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.nominal}" id="s-${v.key}" />
+    <div class="range-ticks"><span>${v.min}${v.unit}</span><span>${v.max}${v.unit}</span></div>
+  `;
+  controls.appendChild(row);
+});
+
+function penalty(x, nominal, width){
+  const d = (x - nominal) / width;
+  return Math.exp(-d * d);
+}
+
+function computeYield(s){
+  const base = 62;
+  const pHmta = penalty(s.hmta, 1.5, 1.1) * (s.hmta < 1.5 ? 0.8 + 0.2 * (s.hmta / 1.5) : 1);
+  const pT1 = penalty(s.t1, 130, 14);
+  const pTime = penalty(s.time1, 2.2, 1.8) * (s.time1 > 4 ? 0.9 : 1);
+  const pT2 = penalty(s.t2, 105, 12);
+  let y = base * pHmta * pT1 * pTime * pT2;
+  return Math.max(2, Math.min(88, y));
+}
+
+const baseline = computeYield(Object.fromEntries(vars.map(v => [v.key, v.nominal])));
+document.getElementById('baseline-sub').textContent = 'baseline ' + baseline.toFixed(1) + '%';
+
+let tornadoChart;
+function renderCalcBreakdown(s){
+  const base = 62;
+  const pHmta = penalty(s.hmta, 1.5, 1.1) * (s.hmta < 1.5 ? 0.8 + 0.2 * (s.hmta / 1.5) : 1);
+  const pT1 = penalty(s.t1, 130, 14);
+  const pTime = penalty(s.time1, 2.2, 1.8) * (s.time1 > 4 ? 0.9 : 1);
+  const pT2 = penalty(s.t2, 105, 12);
+  const raw = base * pHmta * pT1 * pTime * pT2;
+  const clamped = Math.max(2, Math.min(88, raw));
+
+  const rows = [
+    { term:'base', formula:'fixed constant', input:'\u2014', value: base.toFixed(1) },
+    { term:'P(HMTA)', formula:'exp(-((x-1.5)/1.1)\u00B2) \u00D7 low-eq penalty', input: s.hmta + ' eq', value: pHmta.toFixed(3) },
+    { term:'P(T\u2081)', formula:'exp(-((x-130)/14)\u00B2)', input: s.t1 + '\u00B0C', value: pT1.toFixed(3) },
+    { term:'P(time\u2081)', formula:'exp(-((x-2.2)/1.8)\u00B2) \u00D7 long-time penalty', input: s.time1 + ' hr', value: pTime.toFixed(3) },
+    { term:'P(T\u2082)', formula:'exp(-((x-105)/12)\u00B2)', input: s.t2 + '\u00B0C', value: pT2.toFixed(3) }
+  ];
+
+  const body = document.getElementById('calc-body');
+  body.innerHTML = rows.map(r =>
+    `<tr><td>${r.term}</td><td>${r.formula}</td><td>${r.input}</td><td>${r.value}</td></tr>`
+  ).join('');
+
+  document.getElementById('calc-final').innerHTML =
+    `${base.toFixed(1)} &times; ${pHmta.toFixed(3)} &times; ${pT1.toFixed(3)} &times; ${pTime.toFixed(3)} &times; ${pT2.toFixed(3)} `
+    + `= ${raw.toFixed(2)}%  \u2192  clamped [2, 88] \u2192  <strong>${clamped.toFixed(1)}%</strong>`;
+}
+
+function render(){
+  const y = computeYield(state);
+  document.getElementById('yield-out').textContent = y.toFixed(1) + '%';
+  const delta = ((y - baseline) / baseline * 100);
+  const deltaEl = document.getElementById('delta-out');
+  deltaEl.textContent = (delta >= 0 ? '+' : '') + delta.toFixed(1) + '%';
+  deltaEl.className = 'readout-value ' + (delta >= 0 ? 'delta-pos' : 'delta-neg');
+  renderCalcBreakdown(state);
+
+  const impacts = vars.map(v => {
+    const lo = { ...state, [v.key]: v.min };
+    const hi = { ...state, [v.key]: v.max };
+    const yLo = computeYield(lo);
+    const yHi = computeYield(hi);
+    return { label: v.label, range: Math.abs(yHi - yLo) };
+  }).sort((a, b) => b.range - a.range);
+
+  const ctx = document.getElementById('tornado');
+  const data = {
+    labels: impacts.map(i => i.label),
+    datasets: [{
+      label: 'Yield range (pts)',
+      data: impacts.map(i => Number(i.range.toFixed(1))),
+      backgroundColor: '#4fd1ae',
+      borderRadius: 3,
+      maxBarThickness: 22
+    }]
+  };
+  if (tornadoChart){
+    tornadoChart.data = data;
+    tornadoChart.update();
+  } else {
+    tornadoChart = new Chart(ctx, {
+      type: 'bar',
+      data,
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display:false } },
+        scales: {
+          x: {
+            title: { display:true, text:'Yield swing across full range (pts)', color:'#9a9c94', font:{ family:'IBM Plex Mono', size:11 } },
+            ticks:{ color:'#9a9c94', font:{ family:'IBM Plex Mono', size:11 } },
+            grid:{ color:'#34383a' }
+          },
+          y:{
+            ticks:{ color:'#eeece4', font:{ family:'Inter', size:12 } },
+            grid:{ display:false }
+          }
+        }
+      }
+    });
+  }
+}
+
+vars.forEach(v => {
+  const slider = document.getElementById('s-' + v.key);
+  const out = document.getElementById('o-' + v.key);
+  slider.addEventListener('input', () => {
+    state[v.key] = parseFloat(slider.value);
+    out.textContent = state[v.key] + v.unit;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
