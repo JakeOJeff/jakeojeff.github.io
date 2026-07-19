@@ -8,6 +8,15 @@ import { usePathname } from 'next/navigation';
 
 const projectsData = [
   {
+    name: "mimicode",
+    description: "An AI coding-agent CLI (with @trymimicode / Curious Engine). Built the entire terminal UI, memory system and slash commands; #1 contributor. Now a single zero-dependency Go binary.",
+    demo: "https://mimicode.xyz",
+    repo: "https://github.com/trymimicode/mimicode-go",
+    screenshot: "",
+    language: "Go",
+    commits: 60,
+  },
+  {
     name: "Tales of Orbis",
     description: "Reach the core before Dawn Lights you up with Null. A full RPG built in LÖVE with custom engine systems.",
     repo: "https://github.com/JakeOJeff/tales-of-orbis",

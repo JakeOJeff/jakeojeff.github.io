@@ -42,12 +42,16 @@ export default function Summary() {
               changes, the instinct to build doesn&apos;t.
             </p>
             <p>
-              His self-description says &ldquo;I love guitars. Software Developer and
-              Cyber-Pentester,&rdquo; and honestly that captures the split pretty well.
+              His GitHub profile just says <em>&ldquo;I love lua so much ahhhhhh &lt;3
+              &mdash; Systems, Web and Game Developer (you only have one life, learn it
+              all).&rdquo;</em> His other self-description is &ldquo;I love guitars. Software
+              Developer and Cyber-Pentester,&rdquo; and between the two that captures the
+              split pretty well.
               Half of him lives in Lua, TypeScript, Ruby, Go, Python, Java and C; the
-              other half lives on six strings at open gigs. He works with{" "}
-              <span className="font-mono text-sm">@trymimicode</span>, is a bounty hunter
-              for Hack Club, and moderates the W3Schools Discord community.
+              other half lives on six strings at open gigs. He&apos;s the #1 contributor to{" "}
+              <span className="font-mono text-sm">@trymimicode</span> (an AI coding agent) under
+              the Curious Engine builder collective, is a bounty hunter for Hack Club, moderates
+              the W3Schools Discord community, and mentors younger coders around Kochi.
             </p>
           </section>
 
@@ -63,6 +67,30 @@ export default function Summary() {
               the hook: the realization that he could <em>build a thing other people could
               play</em>. It never let go.
             </p>
+            <p className="mb-3">
+              And he wasn&apos;t small on Roblox &mdash; he was genuinely good at it. He joined
+              in <strong>May 2019</strong>, listed himself as &ldquo;Scripter, Game Musician,
+              UI Designer,&rdquo; and ended up <strong>creating an entire obby sub-genre</strong>:
+              the <em>Glitch Per Difficulty Chart</em>, where you clear sections by abusing
+              in-game glitches instead of normal jumps. Other creators started making their own
+              charts in the format he invented. His games pulled serious numbers &mdash; the
+              main <strong>Glitch Per Difficulty Chart passed 160,000+ visits</strong> and a
+              Halo-crates skill-jump speedrun cleared <strong>117,000+</strong> &mdash; and he
+              founded and still owns the <strong>&ldquo;JakO Obbyist Community&rdquo;</strong>{" "}
+              group, a few <strong>hundred members</strong> deep. A kid on a broken laptop
+              quietly ran a hit game and its community.
+            </p>
+            <p className="mb-3">
+              It wasn&apos;t just building, either &mdash; from roughly <strong>2020 to 2022</strong>{" "}
+              he was a full-on content creator. He was part of a <strong>YouTuber obby
+              group</strong>, playing and racing through courses together and{" "}
+              <strong>collabing on the channel</strong>, and cranked out a stack of videos. That
+              spilled into a genuine <strong>video-editing spree</strong> &mdash; cuts, timing,
+              sound effects, syncing moments to a beat &mdash; the same &ldquo;fiddle until it
+              clicks&rdquo; itch as code, just aimed at a clip. Roblox was where he first got to
+              be <em>every</em> kind of maker at once: scripter, game musician, UI designer,
+              community runner, and editor.
+            </p>
             <p>
               The laptop he had back then was rough &mdash; 4GB of RAM, Windows 7, wheezing
               at too many Chrome tabs. As his ambitions outgrew Roblox, he found{" "}
@@ -76,19 +104,21 @@ export default function Summary() {
 
           {/* MINECRAFT + GITHUB */}
           <section>
-            <h2 className="text-2xl font-semibold mb-3">Running a world &mdash; MinersJoK &amp; a GitHub account (2021)</h2>
+            <h2 className="text-2xl font-semibold mb-3">Running a world &mdash; MinersJoK (2020) &amp; a GitHub account (2021)</h2>
             <p className="mb-3">
-              In July 2021 two things happened. He spun up his own Minecraft server,{" "}
-              <strong>MinersJoK</strong> &mdash; minigames, survival, bedwars, hosted
-              through Aternos, open to both cracked and premium accounts. He learned that
+              Around 2020 he spun up his own Minecraft server, <strong>MinersJoK</strong>{" "}
+              &mdash; minigames, survival, bedwars, hosted through Aternos, open to both
+              cracked and premium accounts so <em>everyone</em> could join. He learned that
               running a server is far more admin than code: land-claim and anti-grief
-              plugins, endless permission configs, constant babysitting. But it was a
-              little world that was <em>his</em>, and other people hung out in it.
+              plugins, endless permission configs, constant babysitting. But it was the
+              first thing he ran that other people <em>depended on being up</em> &mdash; a
+              little world that was his, that others lived inside.
             </p>
             <p>
-              He also created his <strong>GitHub account</strong> the same month &mdash;
-              finally somewhere to keep his code instead of losing it every time the laptop
-              died. That account is the spine of the timeline that follows.
+              In July 2021 he created his <strong>GitHub account</strong> &mdash; finally
+              somewhere to keep his code instead of losing it every time the laptop died. He
+              found <strong>LÖVE</strong> around this era too. That account is the spine of
+              the timeline that follows.
             </p>
           </section>
 
@@ -103,7 +133,18 @@ export default function Summary() {
               developers became a recurring theme.
             </p>
             <p className="mb-3">
-              In 2023 he went on a tool-making spree: <strong>anim16</strong> (a quickie
+              This is also when the work turned professional &mdash; as a teenager. In{" "}
+              <strong>August 2022</strong> he took a remote job as a <strong>Software Tester
+              at Suneflower</strong>, running manual and automated tests on web apps and
+              writing GUI-based API reports &mdash; which quietly rewired how he sees
+              software, as a pile of assumptions waiting to be broken. Barely half a year
+              later, in <strong>2023</strong>, he leveled up to <strong>Lead Developer at
+              LuminoByte Studios</strong>, where he built the game engine and core mechanics{" "}
+              <em>and</em> managed the team &mdash; his first taste of leading rather than
+              just building.
+            </p>
+            <p className="mb-3">
+              In 2023 he also went on a tool-making spree: <strong>anim16</strong> (a quickie
               sprite-animation tool, &ldquo;so simple even grandma Alice could edit it&rdquo;)
               and <strong>seductivehood</strong> (a 2D car-physics library obsessed with
               <em> feel</em> over correctness). That September he began <strong>Rhythm</strong>,
@@ -135,7 +176,10 @@ export default function Summary() {
               Chrome extension to figure out where his hours actually disappear to. In July
               came <strong>Stacks Against You</strong> &mdash; a privacy-focused chat app
               with <em>zero database</em>, where nothing is stored and therefore nothing can
-              leak. Privacy by architecture, not policy.
+              leak. Privacy by architecture, not policy. That September he made the security
+              side official too, earning his <strong>OCSP (Offenso Certified Security
+              Professional)</strong> credential in Kochi &mdash; the paper behind years of
+              machine, web and android pentesting.
             </p>
             <p className="mb-3">
               And then the big one: <strong>Tales of Orbis</strong>, his most ambitious game
@@ -156,6 +200,8 @@ export default function Summary() {
               app where you define shapes with live <em>math expressions</em> instead of a
               mouse. <strong>levelisteria</strong>, a life-gamifying demo that&apos;s secretly
               a testbed for a <strong>React-like UI library he&apos;s building in Lua</strong>.{" "}
+<strong>VeloraOS</strong>, a from-scratch <em>operating-system simulation</em> &mdash;
+              desktop, windows and apps &mdash; built to understand the layer he uses every day.{" "}
               <strong>Winpedia</strong>, a winter-themed social app where you freeze if you
               don&apos;t post. A <strong>Minesweeper AI</strong> (lemines) that reasons and
               gambles like a human. <strong>Gratitude Quest</strong>, a game he made for his
@@ -205,6 +251,92 @@ export default function Summary() {
             </p>
           </section>
 
+          {/* 2026 PROFESSIONAL */}
+          <section>
+            <h2 className="text-2xl font-semibold mb-3">2026 &mdash; building things other builders build with</h2>
+            <p className="mb-3">
+              2026 is also the year Paulyn stopped being purely a solo builder. He joined{" "}
+              <strong>mimicode</strong> (<span className="font-mono text-sm">@trymimicode</span>),
+              an AI coding-agent CLI &mdash; deliberately small, four tools, ripgrep-first,
+              routing between Claude Haiku and Sonnet to stay 50&ndash;80% cheaper, with a
+              memory that persists across sessions (&ldquo;not your coding partner&rdquo;).
+              The project was started by Alvin Liju, but Paulyn became its{" "}
+              <strong>#1 contributor</strong>, building essentially the <em>entire</em> terminal
+              UI &mdash; the interactive TUI, the memory system with auto-compacting, slash
+              commands and command palette, session history and restore, an interruption
+              system, multiline paste, real-time stream rendering and switchable color
+              palettes. When the tool outgrew Python, it was rewritten into a single
+              zero-dependency <strong>Go</strong> binary, and there he stepped into a real{" "}
+              <strong>maintainer role</strong>: reviewing and merging PRs, cutting releases,
+              keeping a changelog. His first taste of shipping a reliable, auditable tool that
+              real people run on real codebases.
+            </p>
+            <p className="mb-3">
+              mimicode lives under <strong>Curious Engine</strong> (curiousengine.org), a
+              Bangalore builder non-profit whose whole pitch is{" "}
+              <em>&ldquo;Build Without Asking Permission&rdquo;</em> &mdash; it hands fuel to
+              people who are actually shipping, no equity, no pitch deck, no TAM slide. Paulyn
+              runs its <strong>web and infrastructure</strong> side: he built the site and set
+              up <strong>DNS as code</strong> (a versioned source-of-truth zone applied to the
+              registrar with validate / diff / backup / apply). It&apos;s the exact kind of
+              org he wishes had existed when he was a kid with a weird idea and no way in.
+            </p>
+            <p>
+              He&apos;s also been in the code on <strong>Plotter</strong> (plotter.so, &ldquo;a
+              canvas for thinking with AI&rdquo;) &mdash; Affan Sajid&apos;s product that
+              reorganizes AI chats as a branching <strong>tree</strong> instead of a flat list,
+              so you can see the whole shape of your work and share it with full context.
+              Serving someone else&apos;s vision instead of his own turned out to be its own
+              discipline &mdash; and between that and mimicode, the solo maker quietly became
+              someone other builders build alongside.
+            </p>
+            <p>
+              And the newest thread (mid-2026) points at mobile: he started{" "}
+              <strong>Zenvoq Labs</strong>, an Android-focused micro-SaaS studio, with its first
+              app in progress &mdash; <strong>FramePDF</strong>, a scan / crop / sign-to-PDF tool
+              that&apos;s deliberately <strong>fully offline, no account</strong>. Same
+              privacy-by-architecture instinct as Stacks Against You, aimed this time at the
+              documents on your phone. Nothing shipped to the store yet &mdash; it&apos;s a
+              just-started venture &mdash; but it&apos;s him chasing the &ldquo;put it in front
+              of real people&rdquo; goal one more step.
+            </p>
+          </section>
+
+          {/* COMMUNITY + TEACHING */}
+          <section>
+            <h2 className="text-2xl font-semibold mb-3">Giving it back &mdash; teaching, mentoring &amp; running programs</h2>
+            <p className="mb-3">
+              For all the solo output, some of the work he&apos;s proudest of points outward,
+              and most of it radiates from <strong>TinkerSpace</strong> in Kochi &mdash; the
+              maker space that&apos;s become his second home. He <strong>ran what was, as far as
+              he can tell, Kerala&apos;s first game jam of its size</strong> there (24 hours,
+              students from across the state), and <strong>taught CS and Lua to children at
+              Dharmagiri Vikas</strong>, an initiative aimed at getting young girls into STEM
+              and proving that where you start doesn&apos;t decide where you end up &mdash;
+              something he means literally, having learned everything on a 4GB laptop.
+            </p>
+            <p className="mb-3">
+              The mentoring runs deep. He mentored at <strong>Tink-Her-Hack</strong> &mdash;
+              TinkerHub&apos;s women&apos;s hackathon, one of the largest in the world, thousands
+              of women building overnight across dozens of Kerala venues &mdash; working the
+              floor across <strong>four different venues</strong> and earning a mention for it.
+              He also mentored younger builders through <strong>Kerala Startup Mission</strong>,
+              and even built a project (<strong>CraftConnect</strong>) <em>for</em> a student he
+              was mentoring, because sometimes the best way to teach is to build alongside
+              someone on something real.
+            </p>
+            <p>
+              And in <strong>Hack Club</strong> he crossed from participant to organizer. He&apos;s
+              an official Hack Club contributor, reviews other makers&apos; project submissions,
+              did Summer of Making &mdash; and now <strong>designs and runs his own YSWS
+              (&ldquo;you ship, we ship&rdquo;) programs</strong>: <strong>Orbit</strong> (build
+              a gravity/space physics sim, earn a magnetic-levitation globe) and{" "}
+              <strong>Pristine</strong> (games in pure HTML/CSS, earn a Logitech MX Master).
+              Designing a good YSWS, he says, is a lot like designing a good game &mdash;
+              crafting a constraint and an incentive that makes someone <em>want</em> to build.
+            </p>
+          </section>
+
           {/* MUSIC + CREATIVE */}
           <section>
             <h2 className="text-2xl font-semibold mb-3">The other half &mdash; music, poetry &amp; life</h2>
@@ -230,8 +362,30 @@ export default function Summary() {
             <h2 className="text-2xl font-semibold mb-3">What he&apos;s actually pulled off</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>
+                Became the <strong>#1 contributor to mimicode</strong>, an AI coding-agent
+                CLI &mdash; built its entire terminal UI and memory system, and maintains the
+                Go rewrite &mdash; under the <strong>Curious Engine</strong> builder non-profit,
+                where he also runs the site and DNS-as-code infrastructure.
+              </li>
+              <li>
+                Worked real dev jobs as a teenager &mdash; <strong>Software Tester at
+                Suneflower</strong> (2022) and <strong>Lead Developer at LuminoByte
+                Studios</strong> (2023, built the engine and led the team) &mdash; and earned
+                an <strong>OCSP security certification</strong> (2025).
+              </li>
+              <li>
+                <strong>Created his own Roblox obby genre</strong> (Glitch Per Difficulty
+                Chart) with games past <strong>160K and 117K visits</strong>, and founded a{" "}
+                <strong>Roblox community of a few hundred members</strong> &mdash; as a kid.
+              </li>
+              <li>
+                <strong>Ran Kerala&apos;s first game jam of its size</strong> at TinkerSpace,
+                Kochi (24-hour, students from across the state), and <strong>taught CS &amp;
+                Lua to kids</strong> to bring young girls into STEM.
+              </li>
+              <li>
                 Built <strong>lat / LatLang</strong>, a working Ruby-to-Lua compiler,
-                published as a RubyGem &mdash; his most-starred project.
+                published as a RubyGem &mdash; his most-starred solo project.
               </li>
               <li>
                 Shipped <strong>88+ public repositories</strong> spanning Lua, TypeScript,
@@ -253,8 +407,17 @@ export default function Summary() {
                 Moderates the <strong>W3Schools Discord</strong> community.
               </li>
               <li>
-                Runs <strong>Vellapaper</strong>, a real posters &amp; vintage-paintings
-                e-commerce store (vellapaper.com).
+                Founded <strong>Vellapaper</strong> (2025), a real posters &amp;
+                vintage-paintings business he ran end-to-end &mdash; a hard, valuable lesson in
+                unit economics when shipping costs wouldn&apos;t let the numbers close &mdash;
+                and started <strong>Zenvoq Labs</strong> (2026), an Android studio, with{" "}
+                <strong>FramePDF</strong> (offline PDF scanner) in progress.
+              </li>
+              <li>
+                In <strong>Hack Club</strong>: an official contributor and project reviewer who
+                now <strong>designs and runs his own YSWS programs</strong> (Orbit, Pristine);
+                mentored at <strong>Tink-Her-Hack</strong> across four venues and through{" "}
+                <strong>Kerala Startup Mission</strong>.
               </li>
               <li>
                 Founded and administered <strong>MinersJoK</strong>, his own Minecraft

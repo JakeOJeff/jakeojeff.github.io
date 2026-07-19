@@ -1,0 +1,9 @@
+# building the guts of an AI coding agent - mimicode
+
+## Date : 02-05-2026
+
+new chapter. i've joined up with the mimicode crew (this is alvin's baby originally) and i'm building the whole terminal UI and interaction layer for it. mimicode is an AI coding agent but with a real opinion behind it, "not your coding partner", deliberately small. four tools, always searches with ripgrep, routes between the cheaper and smarter claude models so it's like 50-80% cheaper than just hammering the top model for everything, and it actually remembers what it learns across sessions. the whole thesis is that constraints make it focused and predictable instead of a chaos machine that rewrites your repo when you asked for one function
+
+i've basically been living in the TUI. today alone i wired up the interactive terminal interface, the memory system that writes to meta on changes, slash commands with a command palette, a proper interruption system so esc/ctrl+c actually cancels a running call, multiline writing and pasting (way harder than it sounds in a terminal), token usage tracking across sessions, session history and restore, and a bunch of color palettes you can switch between. it is SO different from making games in löve. there it's a canvas and a game loop, here it's async streams and cursor math and making a text grid feel alive and responsive
+
+what's clicking for me is that this is a real tool that real people run on real codebases, not a toy. it has to be reliable and auditable or nobody trusts it near their code. that bar is way higher than "does the demo work" and it's pushing me to think about UX and failure modes in a way my solo projects never forced me to. also, working on a team on something with actual users is a completely different muscle than shipping little repos alone. i'm into it

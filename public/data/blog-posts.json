@@ -6,22 +6,40 @@
     "date": "2019-07-01"
   },
   {
+    "slug": "roblox-difficulty-genre",
+    "title": "i think i accidentally started a whole genre of obby",
+    "description": "the glitch per difficulty chart genre, 160k+ visits, and running my own roblox community",
+    "date": "2020-06-01"
+  },
+  {
+    "slug": "minersjok-server",
+    "title": "started running my own minecraft server (minersjok)",
+    "description": "minigames, survival, bedwars, and way more admin work than i expected",
+    "date": "2020-07-01"
+  },
+  {
+    "slug": "youtube-obby-collabs",
+    "title": "doing obbies with a whole youtuber group (and getting obsessed with editing)",
+    "description": "collabing with a youtuber obby crew, filming videos, and falling down a video-editing rabbit hole",
+    "date": "2021-01-15"
+  },
+  {
     "slug": "found-love2d",
     "title": "found löve and everything changed",
     "description": "a lightweight framework perfect for my 4gb ram windows 7 laptop",
     "date": "2021-02-01"
   },
   {
-    "slug": "minersjok-server",
-    "title": "started running my own minecraft server (minersjok)",
-    "description": "minigames, survival, bedwars, and way more admin work than i expected",
-    "date": "2021-07-25"
-  },
-  {
     "slug": "jsrc-framework",
     "title": "made my first actual library - JSRC framework",
     "description": "a gui library for löve so i stop rebuilding the same ui every time",
     "date": "2022-06-17"
+  },
+  {
+    "slug": "suneflower-software-tester",
+    "title": "got my first actual dev-adjacent job - software tester",
+    "description": "a remote software testing gig, and learning to see every app as a pile of assumptions to break",
+    "date": "2022-08-01"
   },
   {
     "slug": "guitar-and-gigs",
@@ -34,6 +52,12 @@
     "title": "two tools in one week - anim16 and a car physics library",
     "description": "a quickie animation tool and a 2d car physics library for löve",
     "date": "2023-03-27"
+  },
+  {
+    "slug": "luminobyte-lead-dev",
+    "title": "leading a team and building an engine - luminobyte",
+    "description": "became lead developer, built the game engine and core mechanics, and managed the team",
+    "date": "2023-04-01"
   },
   {
     "slug": "rhythm-game",
@@ -70,6 +94,12 @@
     "title": "building my portfolio + a barebones physics toy",
     "description": "putting together my personal site and an interactive physics model",
     "date": "2025-03-25"
+  },
+  {
+    "slug": "vellapaper-business",
+    "title": "i tried to run an actual business - vellapaper",
+    "description": "selling posters and vintage paintings, doing everything solo, and getting humbled by shipping math",
+    "date": "2025-05-01"
   },
   {
     "slug": "firespark",
@@ -138,6 +168,18 @@
     "date": "2025-08-24"
   },
   {
+    "slug": "ocsp-security-cert",
+    "title": "made the security thing official - i'm OCSP certified now",
+    "description": "an offenso certified security professional credential behind the pentesting work",
+    "date": "2025-09-01"
+  },
+  {
+    "slug": "hc-rpg-cards",
+    "title": "RPG CARDS!",
+    "description": "Got RPG cards from HC",
+    "date": "2025-09-07"
+  },
+  {
     "slug": "game-over-reverse-mystery",
     "title": "a murder mystery told BACKWARDS - game over",
     "description": "a puzzle game where you rewind a murder instead of solving it forward",
@@ -150,16 +192,28 @@
     "date": "2025-09-09"
   },
   {
-    "slug": "hc-rpg-cards",
-    "title": "RPG CARDS!",
-    "description": "Got RPG cards from HC",
-    "date": "2025-09-07"
+    "slug": "veloraos",
+    "title": "building a fake operating system that feels real - veloraos",
+    "description": "an os simulation - desktop, windows and apps - to finally understand the layer i use every day",
+    "date": "2025-09-16"
   },
   {
     "slug": "foss-flip-community",
     "title": "open source, community and the kerala foss scene - foss-flip",
     "description": "a community meme generator as an on-ramp for first-time open source contributors",
     "date": "2025-09-20"
+  },
+  {
+    "slug": "gamejam-and-teaching",
+    "title": "ran a game jam and taught a room of kids to code",
+    "description": "kerala's first big game jam at tinkerspace, and teaching lua to get young girls into stem",
+    "date": "2025-10-01"
+  },
+  {
+    "slug": "spellfluid",
+    "title": "fluid simulation is actually mesmerizing - spellfluid",
+    "description": "a euler-grid + particle fluid simulator, hypnotic to watch",
+    "date": "2025-10-11"
   },
   {
     "slug": "signalizer",
@@ -172,12 +226,6 @@
     "title": "a bunch of little games in a row - coinage, fallclicker, pollocks",
     "description": "a coin physics game, a cozy maple-leaf clicker, and an asteroids space drifter",
     "date": "2025-10-23"
-  },
-  {
-    "slug": "spellfluid",
-    "title": "fluid simulation is actually mesmerizing - spellfluid",
-    "description": "a euler-grid + particle fluid simulator, hypnotic to watch",
-    "date": "2025-10-11"
   },
   {
     "slug": "gospooks",
@@ -216,6 +264,18 @@
     "date": "2025-12-04"
   },
   {
+    "slug": "mentoring-tinkerspace",
+    "title": "mentoring across kerala - tink-her-hack, ksum and tinkerspace",
+    "description": "mentoring at 4 tink-her-hack venues, kerala startup mission, and living at tinkerspace kochi",
+    "date": "2026-02-15"
+  },
+  {
+    "slug": "seashell",
+    "title": "wrote a unix shell from scratch in c - seashell",
+    "description": "command parsing, piping, processes, and c being brutally instructive",
+    "date": "2026-02-23"
+  },
+  {
     "slug": "kochitransit",
     "title": "building a transit app for my own city - kochitransit",
     "description": "civic tech for kochi, and my first real dive into react native + expo",
@@ -234,10 +294,10 @@
     "date": "2026-03-18"
   },
   {
-    "slug": "seashell",
-    "title": "wrote a unix shell from scratch in c - seashell",
-    "description": "command parsing, piping, processes, and c being brutally instructive",
-    "date": "2026-02-23"
+    "slug": "hackclub-ysws",
+    "title": "i run programs in hack club now - orbit & pristine",
+    "description": "designing and organizing my own you-ship-we-ship programs, from participant to organizer",
+    "date": "2026-04-07"
   },
   {
     "slug": "backend-and-security-2026",
@@ -246,9 +306,39 @@
     "date": "2026-04-28"
   },
   {
+    "slug": "mimicode-tui",
+    "title": "building the guts of an AI coding agent - mimicode",
+    "description": "joining the mimicode team and building its entire terminal UI, memory system and slash commands",
+    "date": "2026-05-02"
+  },
+  {
+    "slug": "mimicode-go-rewrite",
+    "title": "rewrote the whole thing in go - mimicode gets serious",
+    "description": "a single zero-dependency binary, and me stepping into a maintainer role for the first time",
+    "date": "2026-06-10"
+  },
+  {
+    "slug": "plotter",
+    "title": "your ai chats, but as a tree - plotter",
+    "description": "building affan's tree-structured AI chat app, and learning to serve someone else's vision",
+    "date": "2026-06-20"
+  },
+  {
+    "slug": "curious-engine",
+    "title": "build without asking permission - curious engine",
+    "description": "the builder non-profit behind mimicode, and me running its site and dns-as-code infra",
+    "date": "2026-07-05"
+  },
+  {
     "slug": "stuff-ive-actually-pulled-off",
     "title": "stuff ive actually pulled off (a lil brag post)",
     "description": "the compiler, the game universe, hackclub, the server, the gigs — writing it down for once",
     "date": "2026-07-15"
+  },
+  {
+    "slug": "zenvoq-framepdf",
+    "title": "starting an android studio - zenvoq labs & framepdf",
+    "description": "a new android micro-saas studio, and an offline-first pdf scanner called framepdf (in progress)",
+    "date": "2026-07-17"
   }
 ]
