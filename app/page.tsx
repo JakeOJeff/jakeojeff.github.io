@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 const images = [
   //   { id: 1, img: "/images/2.jpeg" },
-  { id: 1, img: "/images/4.jpeg" },
+  { id: 1, img: "/logo.png", hoverImg: "/images/4.jpeg" },
 ];
 
 

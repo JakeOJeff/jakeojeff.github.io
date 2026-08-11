@@ -47,7 +47,8 @@ interface StackProps {
   sensitivity?: number;
   cardDimensions?: { width: number; height: number };
   sendToBackOnClick?: boolean;
-  cardsData?: { id: number; img: string }[];
+  // hoverImg, when given, crossfades in over img while the card is hovered
+  cardsData?: { id: number; img: string; hoverImg?: string }[];
   animationConfig?: { stiffness: number; damping: number };
 }
 
@@ -82,6 +83,8 @@ export default function Stack({
       ]
   );
 
+  const [hovered, setHovered] = useState<number | null>(null);
+
   const sendToBack = (id: number) => {
     setCards((prev) => {
       const newCards = [...prev];
@@ -103,6 +106,7 @@ export default function Stack({
     >
       {cards.map((card, index) => {
         const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
+        const isHovered = hovered === card.id && Boolean(card.hoverImg);
 
         return (
           <CardRotate
@@ -111,8 +115,10 @@ export default function Stack({
             sensitivity={sensitivity}
           >
             <motion.div
-              className="rounded-2xl overflow-hidden border-4 border-white"
+              className="relative rounded-2xl overflow-hidden border-4 border-white bg-white"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
+              onHoverStart={() => setHovered(card.id)}
+              onHoverEnd={() => setHovered(null)}
               // animate={{
               //   rotateZ: (cards.length - index - 1) * 2 ,
               //   scale: 1 + index * 0.1 - cards.length * 0.06,
@@ -133,11 +139,28 @@ export default function Stack({
                 height: cardDimensions.height,
               }}
             >
-              <img
+              <motion.img
                 src={card.img}
                 alt={`card-${card.id}`}
+                draggable={false}
+                animate={{ opacity: isHovered ? 0 : 1, scale: isHovered ? 1.08 : 1 }}
+                initial={false}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full h-full object-cover pointer-events-none"
               />
+
+              {card.hoverImg && (
+                <motion.img
+                  src={card.hoverImg}
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 1.12 }}
+                  initial={false}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                />
+              )}
             </motion.div>
           </CardRotate>
         );
