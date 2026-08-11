@@ -22,3 +22,10 @@ body {
   color: var(--foreground);
   font-family: inherit;
 }
+
+/* set on <body> while a project card is being dragged around the wall */
+body.dragging-card,
+body.dragging-card * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}

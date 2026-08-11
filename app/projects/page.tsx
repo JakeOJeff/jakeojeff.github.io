@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import githubIcon from '/public/github.svg';
 import globeIcon from '/public/globe.svg';
@@ -279,7 +279,14 @@ type Project = {
 const bandHeights = ["h-20", "h-28", "h-36", "h-44"];
 const ratios = ["aspect-[4/3]", "aspect-[16/10]", "aspect-square", "aspect-[3/2]"];
 
-function ProjectCard({ repo }: { repo: Project }) {
+type CardHandlers = {
+  registerRef: (name: string, el: HTMLDivElement | null) => void;
+  onPointerDown: (e: React.PointerEvent<HTMLDivElement>, name: string) => void;
+  swallowClick: (e: React.MouseEvent) => void;
+  dragging: boolean;
+};
+
+function ProjectCard({ repo, handlers }: { repo: Project; handlers: CardHandlers }) {
   const [shotFailed, setShotFailed] = useState(false);
 
   const h = hash(repo.name);
@@ -298,7 +305,17 @@ function ProjectCard({ repo }: { repo: Project }) {
 
   return (
     <div
-      className={`group relative mb-5 break-inside-avoid overflow-hidden border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${pick(radii, h >>> 2)} ${pick(tints, h >>> 11)} ${pick(tilts, h >>> 14)}`}
+      ref={(el) => {
+        handlers.registerRef(repo.name, el);
+      }}
+      onPointerDown={(e) => handlers.onPointerDown(e, repo.name)}
+      onClickCapture={handlers.swallowClick}
+      onDragStart={(e) => e.preventDefault()}
+      className={`group relative mb-5 break-inside-avoid overflow-hidden border shadow-sm transition-all duration-300 ${pick(radii, h >>> 2)} ${pick(tints, h >>> 11)} ${
+        handlers.dragging
+          ? "border-gray-300 shadow-2xl"
+          : `border-gray-200 hover:-translate-y-1 hover:shadow-lg ${pick(tilts, h >>> 14)}`
+      }`}
     >
       {showShot ? (
         <div className={`w-full overflow-hidden ${pick(ratios, h >>> 20)}`}>
@@ -309,6 +326,7 @@ function ProjectCard({ repo }: { repo: Project }) {
             src={repo.screenshot}
             alt=""
             loading="lazy"
+            draggable={false}
             onError={() => setShotFailed(true)}
             // a broken image that already errored before hydration never fires
             // onError, so re-check the loaded state once the node is attached
@@ -378,14 +396,215 @@ function ProjectCard({ repo }: { repo: Project }) {
   );
 }
 
+const DEFAULT_ORDER = projectsData.map((p) => p.name);
+const ORDER_KEY = "projects-wall-order";
+const projectsByName = new Map(projectsData.map((p) => [p.name, p]));
+
+// useLayoutEffect warns during Next's server prerender; the FLIP measuring it
+// does only ever matters in the browser.
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export default function Projects() {
   const [search, setSearch] = useState("");
+  const [order, setOrder] = useState<string[]>(DEFAULT_ORDER);
+  const [dragging, setDragging] = useState<string | null>(null);
   const pathname = usePathname();
 
-  const filtered = projectsData.filter(p =>
-    p.name.toLowerCase().includes(search.toLowerCase()) ||
-    p.description.toLowerCase().includes(search.toLowerCase())
+  // live nodes of the currently mounted (i.e. unfiltered) cards
+  const cards = useRef(new Map<string, HTMLDivElement>());
+  // pre-reorder rects, set right before an order change so the effect below
+  // can play the cards from where they were into where they landed
+  const firstRects = useRef<Map<string, DOMRect> | null>(null);
+  // a drag ends with a click event on the card's link — suppress that one
+  const justDragged = useRef(false);
+
+  useEffect(() => {
+    let saved: unknown;
+    try {
+      saved = JSON.parse(localStorage.getItem(ORDER_KEY) ?? "null");
+    } catch {
+      return;
+    }
+    if (!Array.isArray(saved)) return;
+
+    const known = new Set(DEFAULT_ORDER);
+    const merged = saved.filter(
+      (n, i): n is string => typeof n === "string" && known.has(n) && saved.indexOf(n) === i
+    );
+    // projects added since this order was stored go to the back
+    const seen = new Set(merged);
+    DEFAULT_ORDER.forEach((n) => !seen.has(n) && merged.push(n));
+    setOrder(merged);
+  }, []);
+
+  const applyOrder = useCallback((next: string[]) => {
+    // measure before React reflows the wall (a drop has already measured, from
+    // while the dragged card was still under the cursor — keep that one)
+    firstRects.current ??= new Map(
+      Array.from(cards.current, ([name, node]) => [name, node.getBoundingClientRect()])
+    );
+    setOrder(next);
+    try {
+      if (next.every((n, i) => n === DEFAULT_ORDER[i])) localStorage.removeItem(ORDER_KEY);
+      else localStorage.setItem(ORDER_KEY, JSON.stringify(next));
+    } catch {
+      /* private mode / storage full — the layout still works, it just won't persist */
+    }
+  }, []);
+
+  // FLIP: invert every card to its old spot, then let it transition home
+  useIsoLayoutEffect(() => {
+    const first = firstRects.current;
+    if (!first) return;
+    firstRects.current = null;
+
+    const moved: HTMLDivElement[] = [];
+    cards.current.forEach((node, name) => {
+      const from = first.get(name);
+      if (!from) return;
+      const to = node.getBoundingClientRect();
+      const dx = from.left - to.left;
+      const dy = from.top - to.top;
+      const scale = to.width ? from.width / to.width : 1;
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5 && Math.abs(scale - 1) < 0.01) return;
+
+      node.style.transition = "none";
+      node.style.transformOrigin = "top left";
+      node.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`;
+      moved.push(node);
+    });
+    if (!moved.length) return;
+
+    requestAnimationFrame(() => {
+      moved.forEach((node) => {
+        node.style.transition = "transform 420ms cubic-bezier(0.22, 1.1, 0.36, 1)";
+        node.style.transform = "";
+        node.addEventListener(
+          "transitionend",
+          () => {
+            node.style.transition = "";
+            node.style.transformOrigin = "";
+          },
+          { once: true }
+        );
+      });
+    });
+  });
+
+  const registerRef = useCallback((name: string, el: HTMLDivElement | null) => {
+    if (el) cards.current.set(name, el);
+    else cards.current.delete(name);
+  }, []);
+
+  // the card the pointer was released over, or the closest one within reach
+  const dropTarget = useCallback((x: number, y: number, dragged: string) => {
+    let closest: string | null = null;
+    let closestDist = Infinity;
+    for (const [name, node] of Array.from(cards.current)) {
+      if (name === dragged) continue;
+      const r = node.getBoundingClientRect();
+      if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return name;
+      const dist = Math.hypot(x - (r.left + r.width / 2), y - (r.top + r.height / 2));
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = name;
+      }
+    }
+    return closestDist < 280 ? closest : null;
+  }, []);
+
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>, name: string) => {
+      justDragged.current = false;
+      // touch keeps its native scrolling; this is a mouse/pen toy
+      if (e.pointerType === "touch" || e.button !== 0) return;
+      const el = cards.current.get(name);
+      if (!el) return;
+
+      const startX = e.clientX;
+      const startY = e.clientY;
+      let started = false;
+
+      const move = (ev: PointerEvent) => {
+        const dx = ev.clientX - startX;
+        const dy = ev.clientY - startY;
+        if (!started) {
+          if (Math.hypot(dx, dy) < 6) return; // still could be a click
+          started = true;
+          window.getSelection()?.removeAllRanges();
+          document.body.classList.add("dragging-card");
+          el.style.transition = "none";
+          el.style.willChange = "transform";
+          el.style.zIndex = "50";
+          setDragging(name);
+        }
+        const tilt = Math.max(-4, Math.min(4, dx * 0.03));
+        el.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${tilt}deg) scale(1.04)`;
+      };
+
+      const end = (ev: PointerEvent) => {
+        window.removeEventListener("pointermove", move);
+        window.removeEventListener("pointerup", end);
+        window.removeEventListener("pointercancel", end);
+        if (!started) return;
+
+        justDragged.current = true;
+        document.body.classList.remove("dragging-card");
+
+        const target = dropTarget(ev.clientX, ev.clientY, name);
+        const visible = order.filter((n) => cards.current.has(n));
+        const from = visible.indexOf(name);
+        const to = target ? visible.indexOf(target) : -1;
+
+        let next = order;
+        if (from !== -1 && to !== -1 && from !== to) {
+          const reordered = visible.filter((n) => n !== name);
+          reordered.splice(to, 0, name);
+          // slot the new visible sequence back into the full order, leaving
+          // cards hidden by the search filter where they were
+          const shown = new Set(visible);
+          let i = 0;
+          next = order.map((n) => (shown.has(n) ? reordered[i++] : n));
+        }
+
+        // clear the drag transform in the same frame as the measurement, so the
+        // card never paints at its untransformed spot before the FLIP inverts it
+        firstRects.current = new Map(
+          Array.from(cards.current, ([key, node]) => [key, node.getBoundingClientRect()])
+        );
+        el.style.transform = "";
+        el.style.transition = "";
+        el.style.willChange = "";
+        el.style.zIndex = "";
+        // dropped back where it started: setDragging alone re-renders, and the
+        // FLIP above still plays the card home from the cursor
+        setDragging(null);
+        if (next !== order) applyOrder(next);
+      };
+
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", end);
+      window.addEventListener("pointercancel", end);
+    },
+    [order, dropTarget, applyOrder]
   );
+
+  const swallowClick = useCallback((e: React.MouseEvent) => {
+    if (!justDragged.current) return;
+    justDragged.current = false;
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const filtered = order
+    .map((name) => projectsByName.get(name)!)
+    .filter(
+      (p) =>
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
+        p.description.toLowerCase().includes(search.toLowerCase())
+    );
+
+  const rearranged = order.some((n, i) => n !== DEFAULT_ORDER[i]);
 
   return (
     <main className="bg-stone-100 text-black min-h-screen p-6">
@@ -393,7 +612,7 @@ export default function Projects() {
 
       <div className="max-w-6xl mx-auto">
         {/* Search Bar */}
-        <div className="mb-8 max-w-3xl mx-auto">
+        <div className="mb-3 max-w-3xl mx-auto">
           <input
             type="text"
             placeholder="Search projects..."
@@ -403,10 +622,31 @@ export default function Projects() {
           />
         </div>
 
+        <div className="mb-8 max-w-3xl mx-auto flex items-center justify-between text-xs text-gray-500">
+          <span>drag the cards around — they&apos;ll snap into place</span>
+          {rearranged && (
+            <button
+              onClick={() => applyOrder(DEFAULT_ORDER)}
+              className="rounded-lg bg-gray-200 px-3 py-1 font-medium text-gray-700 transition hover:bg-gray-300"
+            >
+              reset layout
+            </button>
+          )}
+        </div>
+
         {/* Masonry wall */}
         <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">
           {filtered.map((repo) => (
-            <ProjectCard key={repo.name} repo={repo} />
+            <ProjectCard
+              key={repo.name}
+              repo={repo}
+              handlers={{
+                registerRef,
+                onPointerDown,
+                swallowClick,
+                dragging: dragging === repo.name,
+              }}
+            />
           ))}
         </div>
 

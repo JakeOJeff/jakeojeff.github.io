@@ -66,7 +66,7 @@ export default function Home() {
 
       {/* Centered main content */}
       <div className="flex-grow flex justify-center items-center p-4">
-        <main className="w-full max-w-5xl">
+        <main className="w-full max-w-6xl">
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-between">
             {/* Left: Card Stack */}
             <div className="flex-1 flex justify-center">
@@ -82,8 +82,8 @@ export default function Home() {
             {/* Right: Text & Links */}
             <div className="flex-1 text-center md:text-left">
               <div className="flex justify-center md:justify-start items-center font-bold mb-4">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-4xl">
+                <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                  <h1 className="text-3xl sm:text-4xl whitespace-nowrap">
                     Paulyn {'{'}
                     <a
                       href="https://github.com/JakeOJeff"
@@ -96,6 +96,8 @@ export default function Home() {
                     </a>
                     {'}'}
                   </h1>
+                  {/* kept as one unit so the pair never splits across lines */}
+                  <div className="flex items-center gap-2">
                   <a
                     href="/contact"
                     title="Get in touch"
@@ -120,6 +122,7 @@ export default function Home() {
                     </svg>
                     <span className={`absolute whitespace-nowrap transition-opacity duration-200 ${resumeHovered ? "opacity-100 delay-100" : "opacity-0"}`}>Resume</span>
                   </a>
+                  </div>
                 </div>
               </div>
               <h3 className="text-lg mb-6">{desc}</h3>
