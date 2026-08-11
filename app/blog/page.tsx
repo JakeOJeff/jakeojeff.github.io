@@ -1,6 +1,7 @@
 import Link from "next/link";
 import path from "path";
 import fs from "fs";
+import { hash, pick, radii, pads, titleSizes, tints, tilts } from "../shapes";
 
 type Post = {
   slug: string;
@@ -17,7 +18,7 @@ export default function BlogPage() {
     <main className="bg-stone-100 text-black min-h-screen">
       <p className="text-lg font-mono ml-10 mt-10">~/blog</p>
 
-      <div className="max-w-5xl mx-auto px-6 pt-6">
+      <div className="max-w-6xl mx-auto px-6 pt-6">
         <Link
           href="/summary"
           className="group inline-flex items-center gap-2 bg-black text-white px-5 py-3 rounded-xl hover:bg-gray-800 transition duration-300"
@@ -30,25 +31,29 @@ export default function BlogPage() {
         </Link>
       </div>
 
-      <div className="max-w-5xl mx-auto">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group bg-white p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition block duration-500"
-            >
-              <h2 className="text-xl font-semibold text-gray-800">{post.title}</h2>
-              <p className="text-sm text-gray-500 mt-1">{post.description}</p>
-              <div className="flex justify-between items-center">
-                <div className="mt-2 text-sm text-gray-400">{post.date}</div>
-                <p className="text-gray-600 transition duration-300">
-                  Read More &#62;&#62;
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-gray-600"></span>
-                </p>
-              </div>
-            </Link>
-          ))}
+      <div className="max-w-6xl mx-auto">
+        {/* Masonry wall */}
+        <div className="columns-1 gap-5 p-6 sm:columns-2 lg:columns-3 xl:columns-4">
+          {posts.map((post) => {
+            const h = hash(post.title);
+            return (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className={`group mb-5 block break-inside-avoid border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${pick(radii, h >>> 2)} ${pick(pads, h >>> 5)} ${pick(tints, h >>> 11)} ${pick(tilts, h >>> 14)}`}
+              >
+                <h2 className={`font-semibold text-gray-800 ${pick(titleSizes, h >>> 8)}`}>{post.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-gray-500">{post.description}</p>
+                <div className="mt-4 flex items-center justify-between gap-3">
+                  <div className="text-xs text-gray-400">{post.date}</div>
+                  <p className="text-sm text-gray-600 transition duration-300">
+                    Read More &#62;&#62;
+                    <span className="block h-0.5 max-w-0 bg-gray-600 transition-all duration-500 group-hover:max-w-full"></span>
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </main>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Stack from "./Stack";
 import RotatingText from './RotatingText';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 
 const images = [
@@ -17,6 +18,7 @@ const images = [
 export default function Home() {
   // name split into JSX below
   const pathname = usePathname();
+  const [resumeHovered, setResumeHovered] = useState(false);
 
   const linkValues = " text-gray-600 hover:text-gray-900 duration-500 "
 
@@ -94,8 +96,30 @@ export default function Home() {
                     </a>
                     {'}'}
                   </h1>
-                  <div className="w-2 h-2 animate-ping rounded-full bg-green-500"></div>
-                  <a href="/contact" className="bg-stone-200 p-4 pt-2 pb-2 rounded-3xl text-black cursor-pointer transition-all duration-300 hover:bg-black hover:text-white">Get in touch</a>
+                  <a
+                    href="/contact"
+                    title="Get in touch"
+                    className={`relative flex h-10 items-center justify-center overflow-hidden rounded-xl bg-stone-200 text-black text-base font-normal cursor-pointer transition-all duration-300 hover:bg-black hover:text-white ${resumeHovered ? "w-10" : "w-36"}`}
+                  >
+                    <span className={`absolute whitespace-nowrap transition-opacity duration-200 ${resumeHovered ? "opacity-0" : "opacity-100 delay-100"}`}>Get in touch</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className={`absolute size-5 transition-opacity duration-200 ${resumeHovered ? "opacity-100 delay-100" : "opacity-0"}`}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                  </a>
+
+                  <a
+                    href="/jake-resume.pdf"
+                    download="jake-resume.pdf"
+                    title="Download resume"
+                    onMouseEnter={() => setResumeHovered(true)}
+                    onMouseLeave={() => setResumeHovered(false)}
+                    className={`relative flex h-10 items-center justify-center overflow-hidden rounded-xl bg-stone-200 text-black text-base font-normal cursor-pointer transition-all duration-300 hover:bg-black hover:text-white ${resumeHovered ? "w-36" : "w-10"}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className={`absolute size-5 transition-opacity duration-200 ${resumeHovered ? "opacity-0" : "opacity-100 delay-100"}`}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    <span className={`absolute whitespace-nowrap transition-opacity duration-200 ${resumeHovered ? "opacity-100 delay-100" : "opacity-0"}`}>Resume</span>
+                  </a>
                 </div>
               </div>
               <h3 className="text-lg mb-6">{desc}</h3>

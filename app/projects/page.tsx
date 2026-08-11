@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import githubIcon from '/public/github.svg';
 import globeIcon from '/public/globe.svg';
 import { usePathname } from 'next/navigation';
+import { hash, pick, radii, pads, titleSizes, tints, tilts } from "../shapes";
 
 const projectsData = [
   {
@@ -265,9 +266,120 @@ const languageColors: Record<string, string> = {
   GDScript: "#478CBF",
 };
 
+type Project = {
+  name: string;
+  description: string;
+  demo?: string;
+  repo: string;
+  screenshot: string;
+  language: string;
+  commits: number;
+};
+
+const bandHeights = ["h-20", "h-28", "h-36", "h-44"];
+const ratios = ["aspect-[4/3]", "aspect-[16/10]", "aspect-square", "aspect-[3/2]"];
+
+function ProjectCard({ repo }: { repo: Project }) {
+  const [shotFailed, setShotFailed] = useState(false);
+
+  const h = hash(repo.name);
+  const color = languageColors[repo.language] || "#999";
+  const bandStyle = (h >>> 23) % 3;
+  const showShot = Boolean(repo.screenshot) && !shotFailed;
+
+  const bandBg =
+    bandStyle === 0
+      ? { backgroundImage: `linear-gradient(135deg, ${color}33, ${color}0d 70%)` }
+      : bandStyle === 1
+        ? { backgroundColor: `${color}14` }
+        : {
+            backgroundImage: `repeating-linear-gradient(45deg, ${color}1f 0 10px, ${color}08 10px 20px)`,
+          };
+
+  return (
+    <div
+      className={`group relative mb-5 break-inside-avoid overflow-hidden border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${pick(radii, h >>> 2)} ${pick(tints, h >>> 11)} ${pick(tilts, h >>> 14)}`}
+    >
+      {showShot ? (
+        <div className={`w-full overflow-hidden ${pick(ratios, h >>> 20)}`}>
+          {/* plain img: these are remote hosts that aren't configured for next/image,
+              and some are expired links that need the onError fallback */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={repo.screenshot}
+            alt=""
+            loading="lazy"
+            onError={() => setShotFailed(true)}
+            // a broken image that already errored before hydration never fires
+            // onError, so re-check the loaded state once the node is attached
+            ref={(img) => {
+              if (img?.complete && img.naturalWidth === 0) setShotFailed(true);
+            }}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      ) : (
+        <div className={`relative w-full overflow-hidden ${pick(bandHeights, h >>> 17)}`} style={bandBg}>
+          {bandStyle !== 2 && (
+            <span
+              className="absolute -bottom-5 right-3 text-7xl font-bold leading-none select-none"
+              style={{ color: `${color}2e` }}
+            >
+              {repo.name[0].toUpperCase()}
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className={pick(pads, h >>> 5)}>
+        <a
+          href={repo.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="after:absolute after:inset-0"
+        >
+          <h2 className={`font-semibold text-gray-800 ${pick(titleSizes, h >>> 8)}`}>{repo.name}</h2>
+        </a>
+
+        <p className="mt-2 text-sm leading-relaxed text-gray-600">{repo.description}</p>
+
+        <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
+          <span className="flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
+            {repo.language}
+          </span>
+          <span>{repo.commits} commits</span>
+        </div>
+
+        <div className="relative z-10 mt-4 flex flex-wrap gap-2">
+          {repo.demo && (
+            <a
+              href={repo.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-3 py-1.5 text-xs font-medium transition hover:bg-gray-300"
+            >
+              <Image src={globeIcon} alt="" width={14} height={14} />
+              Live Demo
+            </a>
+          )}
+          <a
+            href={repo.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-3 py-1.5 text-xs font-medium transition hover:bg-gray-300"
+          >
+            <Image src={githubIcon} alt="" width={14} height={14} />
+            Repository
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   const [search, setSearch] = useState("");
-  const [expanded, setExpanded] = useState<number | null>(0);
   const pathname = usePathname();
 
   const filtered = projectsData.filter(p =>
@@ -279,9 +391,9 @@ export default function Projects() {
     <main className="bg-stone-100 text-black min-h-screen p-6">
       <p className="text-lg font-mono ml-4 mt-6 mb-8">~{pathname}</p>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 max-w-3xl mx-auto">
           <input
             type="text"
             placeholder="Search projects..."
@@ -291,78 +403,10 @@ export default function Projects() {
           />
         </div>
 
-        {/* Accordions */}
-        <div className="space-y-4">
-          {filtered.map((repo, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition"
-            >
-              {/* Header Row */}
-              <button
-                onClick={() => setExpanded(expanded === i ? null : i)}
-                className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition text-left"
-              >
-                <div className="flex items-center gap-4 flex-1">
-                  <span
-                    className={`text-xl text-gray-600 transition ${
-                      expanded === i ? "rotate-180" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                  <h2 className="text-lg font-semibold text-gray-800">{repo.name}</h2>
-                </div>
-
-                {repo.language && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <span
-                      className="w-3 h-3 rounded-full"
-                      style={{
-                        backgroundColor: languageColors[repo.language] || "#999",
-                      }}
-                    />
-                    <span>{repo.language}</span>
-                  </div>
-                )}
-              </button>
-
-              {/* Expanded Content */}
-              {expanded === i && (
-                <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                  <p className="text-gray-700 mb-4">{repo.description}</p>
-
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                    <span>{repo.commits} commits</span>
-                  </div>
-
-                  <div className="flex gap-4">
-                    {repo.demo && (
-                      <a
-                        href={repo.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition text-sm font-medium"
-                      >
-                        <Image src={globeIcon} alt="Website" width={16} height={16} />
-                        Live Demo
-                      </a>
-                    )}
-                    {repo.repo && (
-                      <a
-                        href={repo.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition text-sm font-medium"
-                      >
-                        <Image src={githubIcon} alt="GitHub" width={16} height={16} />
-                        Repository
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+        {/* Masonry wall */}
+        <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">
+          {filtered.map((repo) => (
+            <ProjectCard key={repo.name} repo={repo} />
           ))}
         </div>
 
