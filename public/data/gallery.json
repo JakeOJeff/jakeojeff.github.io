@@ -1,0 +1,22 @@
+{
+  "source": "starter — replace with `npm run sync:album`",
+  "updated": null,
+  "tiles": [
+    { "src": "/images/1.jpeg", "span": "p-sm", "alt": "", "caption": "" },
+    { "src": "", "span": "l-sm", "alt": "" },
+    { "src": "/images/2.jpeg", "span": "p-md", "alt": "", "caption": "" },
+    { "src": "", "span": "sq", "alt": "" },
+    { "src": "/images/3.jpeg", "span": "l-md", "alt": "", "caption": "" },
+    { "src": "", "span": "p-sm", "alt": "" },
+    { "src": "/images/4.jpeg", "span": "l-lg", "alt": "", "caption": "" },
+    { "src": "", "span": "sq", "alt": "" },
+    { "src": "", "span": "p-sm", "alt": "" },
+    { "src": "", "span": "l-sm", "alt": "" },
+    { "src": "", "span": "p-md", "alt": "" },
+    { "src": "", "span": "sq", "alt": "" },
+    { "src": "", "span": "l-md", "alt": "" },
+    { "src": "", "span": "p-sm", "alt": "" },
+    { "src": "", "span": "l-lg", "alt": "" },
+    { "src": "", "span": "sq", "alt": "" }
+  ]
+}
